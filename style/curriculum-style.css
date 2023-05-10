@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=Ysabeau:wght@300;400;500;600&display=swap');
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    margin: 0 auto;
+    max-width: 60%;
+    max-height: 60%;
+}
+
+.side-pannel{
+    float:left;
+    min-width: 35%;
+    max-width: 25%;
+    height: 100%;
+    padding: 4em 0 4em 0;
+}
+
+.content{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.sub-title{
+    letter-spacing: .2em;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.sub-title > p {
+    font-family: 'Poppins', 'Sans Serif';
+    font-weight: 500;
+}
+
+.content-title{
+    font-size: larger;
+    font-weight: 600;
+    font-family: 'Poppins', 'Sans Serif';
+    margin-bottom: .5em !important;
+}
+
+.details{
+    padding-left: 3em;
+    text-align: left;
+    letter-spacing: .1em;
+    font-size: 15px;
+}
+
+.content-wrapper {
+    padding-bottom: 1em;
+}
+
+.content-wrapper > p {
+    margin: 0;
+    padding-left: .5em;
+    padding-bottom: .3em;
+    font-family: 'Ysabeau';
+    font-size: 1.15em;
+}
+
+.content-wrapper > .content-sub-title {
+    font-weight: 600;
+    font-family: 'Poppins', 'Sans Serif';
+}
+
+.content-wrapper > .content-sub-title > p:nth-child(2) {
+    font-weight: 500;
+    color: rgb(138, 138, 138);
+    margin-top: -1em;
+    font-size: .8em;
+    font-family: 'Poppins', 'Sans Serif';
+}
+
+.content-wrapper > .content-description {
+    font-family: 'Poppins', 'Sans Serif';
+}
+
+.bar-wrapper{
+    padding: none;
+    background-color: rgba(177, 177, 177, 0.61);
+    border-radius: 25px;
+}
+
+.bar-wrapper > hr {
+    color: white;
+    background-color: white;
+    height: 6px;
+    border: none;
+    margin: 0;
+    border-radius: 25px;
+}
+
+.img-wrapper{
+    margin: 0 auto;
+    max-width: 35%;
+}
+
+.img-wrapper > img {
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+}
+
+.title-divider{
+    width: 9%;
+    border-top: 1px white;
+}
+
+.green{
+    background-color: rgb(5, 85, 72);
+}
+
+.white-txt{
+    color: white;
+}
+
+.main-pannel{
+    float: right;
+    width: 63%;
+    margin-top: 2em;
+}
