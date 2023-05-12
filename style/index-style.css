@@ -260,7 +260,7 @@ body, html{
 }
 
 .table-container{
-    background-color: rgb(182, 182, 182);
+    background-color: rgba(182, 182, 182, 0.479);
 }
 
 .table-container > table {
@@ -272,6 +272,16 @@ body, html{
 .table-container > table > tbody > tr {
     text-align: center;
     border: 1px solid black;
+}
+
+.table-container > table > tbody > .hidden {
+    display: none;
+}
+
+.table-container > table > tbody > .clickable:hover{
+    cursor: pointer;
+    background-color: rgb(73, 73, 73);
+    color: white
 }
 
 .table-container > table > tbody > tr > td {
