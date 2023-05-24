@@ -1,3 +1,39 @@
+@font-face{
+    font-family: 'Kanit';
+    src: url("/fonts/Kanit/Kanit-Regular.ttf")
+}
+
+@font-face{
+    font-family: 'Kanit-Medium';
+    src: url("/fonts/Kanit/Kanit-Medium.ttf")
+}
+
+@font-face{
+    font-family: 'Kanit-Bold';
+    src: url("/fonts/Kanit/Kanit-Bold.ttf")
+}
+
+@font-face{
+    font-family: 'Source-Code-Pro';
+    src: url("/fonts/Source_Code_Pro/SourceCodePro-Regular.ttf")
+}
+
+@font-face{
+    font-family: 'Source-Code-Pro-Medium';
+    src: url("/fonts/Source_Code_Pro/SourceCodePro-Medium.ttf")
+}
+
+@font-face{
+    font-family: 'Source-Code-Pro-Semi-Bold';
+    src: url("/fonts/Source_Code_Pro/SourceCodePro-SemiBold.ttf")
+}
+
+
+@font-face{
+    font-family: 'Source-Code-Pro-Bold';
+    src: url("/fonts/Source_Code_Pro/SourceCodePro-Bold.ttf")
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
