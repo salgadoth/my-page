@@ -1,4 +1,4 @@
-interface ExperienceModel {
+export interface ExperienceModel {
   _id: string
   title: string
   company: string

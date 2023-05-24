@@ -1,3 +1,5 @@
+import { ProjectModel } from '@/data/models/ProjectModel'
+
 interface TableProps {
   data: ProjectModel[]
 }

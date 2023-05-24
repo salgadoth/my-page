@@ -10,8 +10,8 @@ export default function Apresentacao() {
       <p className="opacity-70 py-3">I build things for the web.</p>
       <p className="opacity-70">
         I am a FullStack software developer, specializing in building (and
-        occasionally leading) exceptional web experiences. Currently I'm focused
-        in building solutions for VerdeCard at Brazil.
+        occasionally leading) exceptional web experiences. Currently I&apos;m
+        focused in building solutions for VerdeCard at Brazil.
       </p>
     </div>
   )
