@@ -7,7 +7,7 @@ export default function AboutPage() {
     <>
       <TopBar></TopBar>
       <Pagina header="About me">
-        <div className="flex flex-wrap flex-row pt-20 items-center place-content-evenly">
+        <div className="flex flex-wrap flex-row pt-15 items-center place-content-evenly">
           <div>
             <ProfilePhoto
               src={
