@@ -18,7 +18,7 @@ export default function Cards(props: CardsProp) {
   const [cards, setCards] = useState<Card[]>([])
 
   const handleClick = (id: string) => {
-    const newArray = cards.map((item: Card, i) => {
+    const newArray = cards.map((item: Card) => {
       if (id === item.id) {
         return { ...item, currentState: !item.currentState }
       } else {
@@ -30,7 +30,6 @@ export default function Cards(props: CardsProp) {
   }
 
   useEffect(() => {
-    console.log(cards.length)
     if (props.data !== undefined && cards.length === 0) {
       for (let i = 0; i < props.data.length; i++) {
         const card: Card = { id: props.data[i]._id, currentState: false }

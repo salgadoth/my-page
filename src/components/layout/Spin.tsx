@@ -1,4 +1,9 @@
-export default function Spin(props: any) {
+interface SpinProps {
+  children: any
+  childClassName?: string
+}
+
+export default function Spin(props: SpinProps) {
   return (
     <div role="status" className="flex justify-center">
       <svg
@@ -17,7 +22,13 @@ export default function Spin(props: any) {
           fill="currentFill"
         />
       </svg>
-      <span className="text-white pt-[0.2rem] pl-1">{props.children}</span>
+      <span
+        className={`text-white pt-[0.2rem] pl-1 ${
+          props.childClassName ? props.childClassName : ''
+        }`}
+      >
+        {props.children}
+      </span>
     </div>
   )
 }
