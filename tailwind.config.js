@@ -16,6 +16,14 @@ module.exports = {
         sourceCodeSemiBold: ['Source-Code-Pro-Semi-Bold', 'sans-serif'],
         sourceCodeBold: ['Source-Code-Pro-Bold', 'sans-serif'],
       },
+      animation: {
+        fadeIn: 'fadeIn 1.5s',
+        fadeOut: 'fadeOut 1s',
+      },
+      keyframes: {
+        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+        fadeOut: { '0%': { opacity: 1 }, '100%': { opacity: 0 } },
+      },
       colors: {
         indigo: '#041947',
         seaGreen: '#A7B304',

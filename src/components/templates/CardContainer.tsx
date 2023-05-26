@@ -3,5 +3,5 @@ interface CardContainerProps {
 }
 
 export default function CardContainer(props: CardContainerProps) {
-  return <div className="grid grid-cols-3">{props.children}</div>
+  return <div className="flex justify-around flex-wrap">{props.children}</div>
 }
