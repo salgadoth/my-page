@@ -1,7 +1,10 @@
+'use client'
+
 import CardContainer from '@/components/templates/CardContainer'
 import Cards from '@/components/templates/Cards'
 import Pagina from '@/components/templates/Pagina'
 import TopBar from '@/components/templates/TopBar'
+import { useEffect } from 'react'
 
 export default function ExperiencePage(props: any) {
   const data = [
@@ -36,6 +39,13 @@ export default function ExperiencePage(props: any) {
       desc: 'Responsible for the development and maintenance of Java EE and Spring Framework systems. Participation in large-scale projects and multidisciplinary teams',
     },
   ]
+
+  useEffect(() => {
+    async function getData() {
+      await fetch('http://localhost:3001/api/user')
+    }
+    getData()
+  }, [])
 
   return (
     <>
