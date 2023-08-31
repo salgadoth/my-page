@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Spin from '../layout/Spin'
 
 interface CardsProp {
-  data: ExperienceModel[]
+  data?: ExperienceModel[]
 }
 
 interface Card {
@@ -39,7 +39,7 @@ export default function Cards(props: CardsProp) {
     }
 
     setLoading(false)
-  }, [])
+  }, [cards, props.data])
 
   if (loading) {
     return (
