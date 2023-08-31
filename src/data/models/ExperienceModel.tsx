@@ -1,10 +1,10 @@
 export interface ExperienceModel {
-  _id: string
+  id: string
   title: string
   company: string
   lvl: string
   started: string
   ended: string
-  cuntry: string
+  country: string
   desc: string
 }

@@ -30,9 +30,10 @@ export default function Cards(props: CardsProp) {
   }
 
   useEffect(() => {
+    console.log(props.data)
     if (props.data !== undefined && cards.length === 0) {
       for (let i = 0; i < props.data.length; i++) {
-        const card: Card = { id: props.data[i]._id, currentState: false }
+        const card: Card = { id: props.data[i].id, currentState: false }
         cards.push(card)
       }
     }
@@ -50,9 +51,13 @@ export default function Cards(props: CardsProp) {
     return (
       <>
         {props.data?.map((exp: ExperienceModel, i) => {
+          const startedAtDate = new Date(exp.started)
+          if (startedAtDate.getMonth() === 0) startedAtDate.setMonth(1)
+          const endedAtDate = new Date(exp.ended)
+          if (endedAtDate.getMonth() === 0) endedAtDate.setMonth(1)
           return (
             <div
-              key={exp._id}
+              key={exp.id}
               className="group h-80 w-80 [perspective:1000px] hover:cursor-pointer"
             >
               <div
@@ -62,19 +67,33 @@ export default function Cards(props: CardsProp) {
                     ? '[transform:rotateY(180deg)]'
                     : ''
                 }`}
-                onClick={() => handleClick(exp._id)}
+                onClick={() => handleClick(exp.id)}
               >
                 <div className="absolute inset-0 [backface-visibility:hidden]">
                   <div className="z-10 w-full h-full text-black flex flex-col justify-center flex-wrap text-center p-4">
-                    {cards.at(i)?.id === exp._id &&
+                    {cards.at(i)?.id === exp.id &&
                     cards.at(i)?.currentState !== true ? (
                       <span className="font-kanitMed text-lg">
                         <p className="capitalize pb-4">{exp.title}</p>
                         <p className="pb-4">{exp.company}</p>
                         <p>
-                          {exp.started} - {exp.ended ? exp.ended : 'till now'}
+                          {startedAtDate.getMonth().toString().length !== 1
+                            ? startedAtDate.getMonth()
+                            : '0' +
+                              startedAtDate.getMonth().toString() +
+                              '/' +
+                              startedAtDate.getFullYear()}{' '}
+                          -{' '}
+                          {exp.ended
+                            ? endedAtDate.getMonth().toString().length !== 1
+                              ? endedAtDate.getMonth()
+                              : '0' +
+                                endedAtDate.getMonth().toString() +
+                                '/' +
+                                endedAtDate.getFullYear()
+                            : 'till now'}
                         </p>
-                        <p>{exp.cuntry}</p>
+                        <p>{exp.country}</p>
                       </span>
                     ) : (
                       <></>
@@ -83,7 +102,7 @@ export default function Cards(props: CardsProp) {
                 </div>
                 <div className="absolute inset-0 h-full w-full text-black">
                   <div className="z-0 w-full h-full text-black flex flex-col justify-center flex-wrap p-4">
-                    {cards.at(i)?.id === exp._id &&
+                    {cards.at(i)?.id === exp.id &&
                     cards.at(i)?.currentState === true ? (
                       <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg">
                         <p className="animate-fadeIn">{exp.desc}</p>
