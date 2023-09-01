@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 async function handler(req: NextRequest) {
   if (req.method === 'GET') {
@@ -11,15 +11,10 @@ async function handler(req: NextRequest) {
       },
     )
 
-    return new Response(await user.json(), {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
-    })
+    return NextResponse.json(await user.json())
   }
 }
+
+export const runtime = 'nodejs'
 
 export { handler as GET }
