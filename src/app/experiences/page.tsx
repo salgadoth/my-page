@@ -13,9 +13,7 @@ export default function ExperiencePage(props: any) {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        'https://my-page-salgadoth.vercel.app/api/user',
-      )
+      const response = await fetch('api/user')
       const json: UserModel = await response.json()
       setResponseData(json.UserExperience)
     }
