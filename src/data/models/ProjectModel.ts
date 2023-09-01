@@ -1,8 +1,11 @@
 export interface ProjectModel {
-  _id: string
+  id: string
   name: string
   languages: string
   date: string
   screenshot: string
   details: string
+  rating: number
+  created_at: string
+  updated_at: string
 }

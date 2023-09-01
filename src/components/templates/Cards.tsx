@@ -3,6 +3,7 @@
 import { ExperienceModel } from '@/data/models/ExperienceModel'
 import { useEffect, useState } from 'react'
 import Spin from '../layout/Spin'
+import { getFormattedMonth } from '@/util/StringUtils'
 
 interface CardsProp {
   data?: ExperienceModel[]
@@ -30,7 +31,6 @@ export default function Cards(props: CardsProp) {
   }
 
   useEffect(() => {
-    console.log(props.data)
     if (props.data !== undefined && cards.length === 0) {
       for (let i = 0; i < props.data.length; i++) {
         const card: Card = { id: props.data[i].id, currentState: false }
@@ -52,9 +52,10 @@ export default function Cards(props: CardsProp) {
       <>
         {props.data?.map((exp: ExperienceModel, i) => {
           const startedAtDate = new Date(exp.started)
-          if (startedAtDate.getMonth() === 0) startedAtDate.setMonth(1)
           const endedAtDate = new Date(exp.ended)
-          if (endedAtDate.getMonth() === 0) endedAtDate.setMonth(1)
+
+          const formattedStartedMonth = getFormattedMonth(exp.started)
+          const formattedEndedMonth = getFormattedMonth(exp.ended)
           return (
             <div
               key={exp.id}
@@ -77,20 +78,14 @@ export default function Cards(props: CardsProp) {
                         <p className="capitalize pb-4">{exp.title}</p>
                         <p className="pb-4">{exp.company}</p>
                         <p>
-                          {startedAtDate.getMonth().toString().length !== 1
-                            ? startedAtDate.getMonth()
-                            : '0' +
-                              startedAtDate.getMonth().toString() +
-                              '/' +
-                              startedAtDate.getFullYear()}{' '}
+                          {formattedStartedMonth +
+                            '/' +
+                            startedAtDate.getFullYear()}{' '}
                           -{' '}
                           {exp.ended
-                            ? endedAtDate.getMonth().toString().length !== 1
-                              ? endedAtDate.getMonth()
-                              : '0' +
-                                endedAtDate.getMonth().toString() +
-                                '/' +
-                                endedAtDate.getFullYear()
+                            ? formattedEndedMonth +
+                              '/' +
+                              endedAtDate.getFullYear()
                             : 'till now'}
                         </p>
                         <p>{exp.country}</p>

@@ -1,35 +1,45 @@
 'use client'
 
+import Spin from '@/components/layout/Spin'
 import Pagina from '@/components/templates/Pagina'
 import Table from '@/components/templates/Table'
 import TopBar from '@/components/templates/TopBar'
+import { ProjectModel } from '@/data/models/ProjectModel'
+import { UserModel } from '@/data/models/UserModel'
+import { useEffect, useState } from 'react'
 
 export default function ProjectsPage() {
-  const data = [
-    {
-      _id: 'angsi132odbh24ndsijf',
-      name: 'Project 1',
-      languages: 'Used Languages',
-      date: 'Date',
-      screenshot: 'Screenshot',
-      details: 'Details',
-    },
-    {
-      _id: 'ghbnsdb18y3t23hugnvb',
-      name: 'Project 2',
-      languages: 'Used Languages',
-      date: 'Date',
-      screenshot: 'Screenshot',
-      details: 'Details',
-    },
-  ]
+  const [responseData, setResponseData] = useState<ProjectModel[]>()
+  const [loading, setLoading] = useState(true)
 
-  return (
-    <>
-      <TopBar />
-      <Pagina header="My Projects">
-        <Table data={data} />
-      </Pagina>
-    </>
-  )
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch('http://localhost:3001/api/user')
+      const json: UserModel = await response.json()
+      setResponseData(json.UserProjects)
+      setLoading(false)
+    }
+    getData()
+  }, [])
+  if (loading) {
+    return (
+      <>
+        <TopBar />
+        <Pagina header="My Projects">
+          <Spin childClassName="!text-black">
+            <p>Loading...</p>
+          </Spin>
+        </Pagina>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <TopBar />
+        <Pagina header="My Projects">
+          <Table data={responseData} />
+        </Pagina>
+      </>
+    )
+  }
 }
