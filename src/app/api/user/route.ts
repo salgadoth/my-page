@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 
 async function handler(req: NextRequest) {
   if (req.method === 'GET') {
@@ -11,7 +11,14 @@ async function handler(req: NextRequest) {
       },
     )
 
-    return NextResponse.json(await user.json())
+    return new Response(await user.json(), {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    })
   }
 }
 
