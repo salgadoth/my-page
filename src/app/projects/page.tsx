@@ -16,7 +16,7 @@ export default function ProjectsPage() {
     async function getData() {
       const response = await fetch('api/user')
       const json: UserModel = await response.json()
-      setResponseData(json.UserProjects)
+      setResponseData(json.my_projects)
       setLoading(false)
     }
     getData()

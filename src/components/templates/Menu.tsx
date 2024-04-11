@@ -13,7 +13,7 @@ export default function Menu(props: MenuProps) {
       <ol
         className={`
                 flex place-content-evenly 
-                w-full list-[decimal-leading-zero]
+                w-50% list-[decimal-leading-zero]
                 text-zinc-50 marker:text-seaGreen
             `}
       >

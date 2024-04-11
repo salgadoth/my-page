@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 async function handler(req: NextRequest) {
   if (req.method === 'GET') {
+    const API_URL = process.env.API_URL
+    
     const user = await fetch(
-      'https://my-page-api.cyclic.cloud/user/salgadoth',
+      API_URL + 'user/salgadoth',
       {
         next: {
           revalidate: 600,

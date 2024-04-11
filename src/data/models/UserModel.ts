@@ -8,6 +8,6 @@ export interface UserModel {
   created_at: string
   updated_at: string
 
-  UserExperience: ExperienceModel[]
-  UserProjects: ProjectModel[]
+  my_experiences: ExperienceModel[]
+  my_projects: ProjectModel[]
 }

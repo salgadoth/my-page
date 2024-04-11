@@ -17,14 +17,14 @@ export default function ExperiencePage(props: any) {
     async function getData() {
       const response = await fetch('api/user')
       const json: UserModel = await response.json()
-      setResponseData(json.UserExperience)
+      setResponseData(json.my_experiences)
       setLoading(false)
     }
     getData()
   }, [])
 
   if (loading) {
-    ;<>
+    <>
       <TopBar />
       <Pagina
         header="My experiences"

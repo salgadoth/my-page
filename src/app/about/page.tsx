@@ -20,7 +20,7 @@ export default function AboutPage() {
           <div className="text-black font-kanit w-3/4 h-1/2 text-lg">
             <p className="pb-3">
               My name is Thiago, I&apos;m currently 23 years old, I was born in
-              Brazil, but currently live in Portugal. I&apos;m a very active and
+              Brazil, but currently live in Sydney. I&apos;m a very active and
               self-realized person, my first passion is surfing and doing out in
               the open activities.
             </p>
