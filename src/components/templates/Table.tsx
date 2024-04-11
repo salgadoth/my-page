@@ -2,7 +2,7 @@ import { ProjectModel } from '@/data/models/ProjectModel'
 import { useEffect, useState } from 'react'
 import Spin from '../layout/Spin'
 import { getFormattedMonth } from '@/util/StringUtils'
-import {Rating} from '../layout/StarsRating'
+import { Rating } from '../layout/StarsRating'
 
 interface TableProps {
   data?: ProjectModel[]
@@ -67,10 +67,15 @@ export default function Table(props: TableProps) {
                       projectsState[i].currentState === true ? '' : 'hidden'
                     }`}
                   >
-                    <td colSpan={1} className='bg-gray-200 rounded-l-lg'>
-                      <Rating total={proj.rating}/>
+                    <td colSpan={1} className="bg-gray-200 rounded-l-lg">
+                      <Rating total={proj.rating} />
                     </td>
-                    <td colSpan={2} className='bg-gray-200 rounded-r-lg text-left'>{proj.details}</td>
+                    <td
+                      colSpan={2}
+                      className="bg-gray-200 rounded-r-lg text-left"
+                    >
+                      {proj.details}
+                    </td>
                     {/* <td colSpan={2}>{proj.screenshot}</td> */}
                   </tr>
                 </>

@@ -14,9 +14,7 @@ export default function TopBar(props: any) {
       <div className="pl-10">
         <LogoSvg width={85} height={85} url="/" />
       </div>
-      <div
-        className="w-[28%]"
-      >
+      <div className="w-[28%]">
         <Menu>
           <MenuItem text="About" url="/about" />
           <MenuItem text="Experience" url="/experiences" />

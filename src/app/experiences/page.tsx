@@ -24,7 +24,7 @@ export default function ExperiencePage(props: any) {
   }, [])
 
   if (loading) {
-    <>
+    ;<>
       <TopBar />
       <Pagina
         header="My experiences"

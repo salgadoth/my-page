@@ -7,7 +7,7 @@ export interface MenuItemProps {
 
 export default function MenuItem(props: MenuItemProps) {
   return (
-    <Link href={props.url} className='pr-14'>
+    <Link href={props.url} className="pr-14">
       <li
         className="after:content-['']
                    after:block
