@@ -20,6 +20,7 @@ export default function TopBar(props: any) {
           <MenuItem text="Experience" url="/experiences" />
           <MenuItem text="Projects" url="/projects" />
           <MenuItem text="Contact" url="/contacts" />
+          <MenuItem text="Export" url="/export" />
         </Menu>
       </div>
     </div>
