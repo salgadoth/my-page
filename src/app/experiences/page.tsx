@@ -24,18 +24,20 @@ export default function ExperiencePage(props: any) {
   }, [])
 
   if (loading) {
-    ;<>
-      <TopBar />
-      <Pagina
-        header="My experiences"
-        classNameParent="!bg-indigo"
-        classNameHeader="!text-white"
-      >
-        <Spin childClassName="!text-black">
-          <p>Loading...</p>
-        </Spin>
-      </Pagina>
-    </>
+    return (
+      <>
+        <TopBar />
+        <Pagina
+          header="My experiences"
+          classNameParent="!bg-indigo"
+          classNameHeader="!text-white"
+        >
+          <Spin childClassName="!text-black">
+            <p>Loading...</p>
+          </Spin>
+        </Pagina>
+      </>
+    )
   } else {
     return (
       <>
