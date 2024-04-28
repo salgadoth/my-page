@@ -30,6 +30,7 @@ Font.register({
 Font.register({
   family: 'Lato',
   src: `https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wWw.ttf`,
+  fontWeight: 'bold',
 })
 
 export default function ExportDocument(props: any) {
@@ -39,6 +40,7 @@ export default function ExportDocument(props: any) {
     async function getData() {
       const response = await fetch('api/user')
       const json: UserModel = await response.json()
+      console.log(json)
       setUserData(json)
     }
     getData()

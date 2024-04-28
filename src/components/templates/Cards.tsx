@@ -99,7 +99,7 @@ export default function Cards(props: CardsProp) {
                   <div className="z-0 w-full h-full text-black flex flex-col justify-center flex-wrap p-4">
                     {cards.at(i)?.id === exp.id &&
                     cards.at(i)?.currentState === true ? (
-                      <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg">
+                      <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg overflow-auto">
                         <p className="animate-fadeIn">{exp.desc}</p>
                       </span>
                     ) : (

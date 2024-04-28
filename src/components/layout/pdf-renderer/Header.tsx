@@ -1,5 +1,15 @@
+import GmailSVG from '@/components/svg/gmail'
+import LeetCodeSVG from '@/components/svg/leetcode'
+import PhoneSVG from '@/components/svg/phone'
 import { UserModel } from '@/data/models/UserModel'
-import { View, Text, StyleSheet, Link, Image } from '@react-pdf/renderer'
+import ReactPDF, {
+  View,
+  Text,
+  StyleSheet,
+  Link,
+  Image,
+} from '@react-pdf/renderer'
+import { ReactElement } from 'react'
 
 interface HeaderProps {
   data: UserModel
@@ -27,17 +37,39 @@ const styles = StyleSheet.create({
     paddingVertical: '10px',
     paddingHorizontal: '5px',
   },
+  skillsColumn: {
+    paddingVertical: '10px',
+  },
+  skillsList: {
+    paddingLeft: '10px',
+  },
+  skillsTitle: {
+    fontWeight: 'bold',
+  },
+  skillsItem: {
+    paddingVertical: '2px',
+    color: 'white',
+  },
   name: {
     paddingBottom: '5px',
   },
   subtitles: {
     fontSize: '12px',
+    color: 'white',
   },
   linkColumn: {},
   link: { fontSize: '10px', textDecoration: 'none', color: 'white' },
+  contactsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: '8px',
+    // width: '90%',
+  },
 })
 
 export default function Header(props: HeaderProps) {
+  // props.data.my_links.map()
+
   return (
     <View style={styles.container}>
       <View style={styles.photoContainer}>
@@ -53,11 +85,47 @@ export default function Header(props: HeaderProps) {
           {props.data.fname + ' ' + props.data.lname}
         </Text>
         <Text style={styles.subtitles}>{props.data.title}</Text>
-      </View>
-      <View style={styles.linkColumn}>
-        <Link src="mailto:thiagohenriques1699@gmail.com" style={styles.link}>
-          thiagohenriques1699@gmail.com
-        </Link>
+        <View style={styles.skillsColumn}>
+          <Text style={styles.skillsTitle}>Skills:</Text>
+          <View style={styles.skillsList}>
+            {props.data.skill_set.map((skill, idx) => {
+              return (
+                <Text key={idx} style={styles.skillsItem}>
+                  {skill}
+                </Text>
+              )
+            })}
+          </View>
+        </View>
+        <View style={styles.linkColumn}>
+          <Text>Contact me: </Text>
+          <View style={styles.contactsContainer}>
+            {props.data.my_contacts.map((contact, idx) => {
+              if (contact.type === 'e-mail')
+                return (
+                  <Link
+                    key={idx}
+                    src={'mailto:' + contact.contact}
+                    style={styles.link}
+                  >
+                    <GmailSVG width="24px" height="24px" />
+                  </Link>
+                )
+              // else if (contact.type === 'mobile')
+              else
+                return (
+                  <Link
+                    key={idx}
+                    src={'tel:' + contact.contact}
+                    style={styles.link}
+                  >
+                    <PhoneSVG width="24px" height="24px" />
+                  </Link>
+                )
+              // else src = contact.contact
+            })}
+          </View>
+        </View>
       </View>
     </View>
   )

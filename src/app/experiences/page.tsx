@@ -32,7 +32,7 @@ export default function ExperiencePage(props: any) {
           classNameParent="!bg-indigo"
           classNameHeader="!text-white"
         >
-          <Spin childClassName="!text-black">
+          <Spin>
             <p>Loading...</p>
           </Spin>
         </Pagina>

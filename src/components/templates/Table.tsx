@@ -56,7 +56,16 @@ export default function Table(props: TableProps) {
                     onClick={() => handleClick(proj.id)}
                   >
                     <td className="rounded-tl-lg rounded-bl-lg">{proj.name}</td>
-                    <td>{proj.languages}</td>
+                    <td className="flex flex-row flex-wrap justify-center">
+                      {proj.tech.map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="bg-teal-500 rounded-lg w-[25%] text-center m-1"
+                        >
+                          <p className="font-semibold">{tech}</p>
+                        </span>
+                      ))}
+                    </td>
                     <td>{month + '/' + date.getFullYear()}</td>
                     <td className="rounded-tr-lg rounded-br-lg">
                       {proj.screenshot}
