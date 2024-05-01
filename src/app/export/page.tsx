@@ -7,6 +7,7 @@ import Content from '@/components/layout/pdf-renderer/Content'
 import { useEffect, useState } from 'react'
 import { UserModel } from '@/data/models/UserModel'
 import Spin from '@/components/layout/Spin'
+import KanitFontRegisterer from '../../util/FontsRegisterer/KanitRegister'
 
 const PDFViewer = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
@@ -22,16 +23,7 @@ const styles = StyleSheet.create({
   },
 })
 
-Font.register({
-  family: 'Roboto',
-  src: `http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf`,
-})
-
-Font.register({
-  family: 'Lato',
-  src: `https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wWw.ttf`,
-  fontWeight: 'bold',
-})
+KanitFontRegisterer()
 
 export default function ExportDocument(props: any) {
   const [userData, setUserData] = useState<UserModel>()

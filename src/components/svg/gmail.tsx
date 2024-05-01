@@ -3,12 +3,7 @@ import { SVGProps } from '../common/interfaces/props'
 
 export default function GmailSVG(props: SVGProps) {
   return (
-    <Svg
-      height={props.height}
-      width={props.width}
-      id="Capa_1"
-      viewBox="0 0 21.51 21.51"
-    >
+    <Svg height={props.height} width={props.width}>
       <G>
         <Path
           fill="#FFFFFF"

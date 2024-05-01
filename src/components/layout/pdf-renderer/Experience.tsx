@@ -8,27 +8,22 @@ interface ExperienceProps {
 const styles = StyleSheet.create({
   contentContainer: {
     paddingLeft: '5px',
-    fontFamily: 'Lato',
+    fontFamily: 'Kanit',
+    // fontWeight: 'bold',
   },
   expsContainer: {
     width: '70%',
   },
   expContainer: {
-    fontSize: '12px',
+    fontSize: '10px',
     marginVertical: '5px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     paddingHorizontal: '5px',
   },
-  margin2: {
-    marginVertical: '2px',
-  },
-  margin4: {
-    marginVertical: '4px',
-  },
-  fontSize8: {
-    fontSize: '8px',
+  margin1: {
+    marginVertical: '1px',
   },
 })
 
@@ -41,20 +36,22 @@ export default function Experience(props: ExperienceProps) {
           {props.data.map((exp, idx) => {
             return (
               <View style={styles.expContainer} key={idx}>
-                <Text style={styles.margin2}>
-                  <Text style={{ fontWeight: 'bold', fontSize: '13px' }}>
+                <Text style={styles.margin1}>
+                  <Text style={{ fontWeight: 'bold', fontSize: '12px' }}>
                     {exp.title}
                   </Text>
-                  <Text style={{ fontSize: '9px' }}> - {exp.company}</Text>
+                  <Text>
+                    {' '}
+                    - {exp.company} - {exp.country}
+                  </Text>
                 </Text>
-                <Text style={styles.margin2}>{exp.country}</Text>
-                <Text style={(styles.margin4, styles.fontSize8)}>
+                <Text style={styles.margin1}>
                   {new Date(exp.started).toLocaleDateString('pt-BR')} -{' '}
                   {exp.ended
                     ? new Date(exp.ended).toLocaleDateString('pt-BR')
                     : 'till now'}
                 </Text>
-                <Text style={styles.margin2}>{exp.desc}</Text>
+                <Text style={styles.margin1}>{exp.desc}</Text>
               </View>
             )
           })}
