@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import GitHubSVG from '@/components/svg/github'
 import GmailSVG from '@/components/svg/gmail'
 import LeetCodeSVG from '@/components/svg/leetcode'
