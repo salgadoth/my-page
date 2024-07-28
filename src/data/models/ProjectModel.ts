@@ -1,7 +1,7 @@
 export interface ProjectModel {
   id: string
   name: string
-  languages: string
+  tech: string[]
   date: string
   screenshot: string
   details: string
