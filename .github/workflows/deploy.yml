@@ -1,0 +1,36 @@
+name: Deploy Next.js
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+      
+      - name: Deploy to server
+        env: 
+          API_URL: ${{ secrets.API_URL }}
+          NEXT_PUBLIC_VPS_URL: ${{ secrets.VPS_URL }}
+        run: |
+          rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
+          cd /home/$USER/deployments/my-page-api
+          npm install --production
+          pm2 reload ecosystem.config.js
+
