@@ -30,7 +30,7 @@ jobs:
       - name: Deploy to server
         run: |
           echo $API_URL && echo $NEXT_PUBLIC_VPS_URL
-          rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
+          rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/runner-my-page/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
           cd /home/$USER/deployments/my-page-api
           npm install --production
           pm2 reload ecosystem.config.js 
