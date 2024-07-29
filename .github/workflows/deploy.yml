@@ -33,5 +33,6 @@ jobs:
           rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/runner-my-page/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
           cd /home/$USER/deployments/my-page-api
           npm install --production
-          pm2 reload ecosystem.config.js 
+          pm2 startOrReload ecosystem.config.js
+          pm2 list 
 
