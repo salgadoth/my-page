@@ -27,11 +27,11 @@ jobs:
           NEXT_PUBLIC_VPS_URL: ${{ secrets.VPS_URL }}
         run: npm run build
       
-      - name: Deploy to server
+      - name: Build and deploy to server
         run: |
           echo $API_URL && echo $NEXT_PUBLIC_VPS_URL
           rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/runner-my-page/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
-          cd /home/$USER/deployments/my-page-api
+          cd /home/$USER/deployments/my-page
           npm install --production
           pm2 startOrReload ecosystem.config.js
           pm2 list 
