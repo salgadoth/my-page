@@ -1,8 +1,17 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import * as z from 'zod'
 
 import Pagina from '@/components/templates/Pagina'
 import TopBar from '@/components/templates/TopBar'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 interface LinksData {
   name: string
@@ -10,7 +19,25 @@ interface LinksData {
   icon: string
 }
 
-export default function contact() {
+const schema = z.object({
+  name: z.string().min(1, 'Your name is required'),
+  email: z.string().min(1, 'Your email is required'),
+  message: z.string().min(1, 'Your message for me is required'),
+})
+
+type FormData = z.infer<typeof schema>
+
+export default function Contact() {
+  const [formStatus, setFormStatus] = useState<string | null>(null)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  })
+
   const links: LinksData[] = [
     {
       name: 'LinkedIn',
@@ -24,35 +51,115 @@ export default function contact() {
     },
   ]
 
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch('/api/new-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setFormStatus('Form submitted successfully')
+      } else {
+        const errorData = await response.json()
+        setFormStatus('Error: ' + errorData)
+      }
+    } catch (error) {
+      console.error('Failed to submit form: ', error)
+      setFormStatus('Failed to submit form')
+    }
+  }
+
+  const renderErrorMessage = (message: string | undefined) => {
+    return <p className="text-red-500 text-sm">{message}</p>
+  }
+
   return (
     <>
       <TopBar />
       <Pagina
-        header="My Contact Infos"
+        header="Contact Me"
         classNameParent="!bg-indigo"
         classNameHeader="text-white"
       >
         <div className="flex flex-row">
-          <div className="pr-8">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.829107596124!2d-9.421905947775524!3d38.698769579361674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1ec42faa052c1f%3A0x1a076fe2fa4fa3e6!2sR.%20da%20Palmeira%205C%2C%202750-285%20Cascais%2C%20Portugal!5e0!3m2!1spt-BR!2sbr!4v1683662180559!5m2!1spt-BR!2sbr"
-              width="400"
-              height="300"
-              className="border-0"
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="pr-8 bg-white w-2/3 px-8 pt-8 pb-12 rounded-2x text-black rounded-lg">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="text-black font-semibold tracking-wide block text-grey-700"
+                >
+                  Your name:
+                </label>
+                <input
+                  className="border-black border-[0.5px] border-opacity-25"
+                  id="name"
+                  type="text"
+                  placeholder="Jhon Doe"
+                  {...register('name')}
+                />
+                {errors.name && renderErrorMessage(errors.name.message)}
+              </div>
+
+              <div className="mb-4 grid grid-rows-2 w-1/2">
+                <label htmlFor="email" className="font-semibold tracking-wide">
+                  Email:
+                </label>
+                <input
+                  className={`border ${
+                    errors.email ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  id="email"
+                  type="email"
+                  placeholder="example@example.com"
+                  {...register('email')}
+                />
+                {errors.email && renderErrorMessage(errors.email.message)}
+              </div>
+              <div className="mb-4">
+                <label htmlFor="" className="font-semibold">
+                  Phone:{' '}
+                </label>
+                <PhoneInput
+                  specialLabel={'Phone:'}
+                  country={'au'}
+                  inputStyle={{}}
+                />
+              </div>
+              <div className="mb-4">
+                <label className="font-semibold tracking-wide">Message:</label>
+                <textarea
+                  {...register('message')}
+                  className={`border ${
+                    errors.message ? 'border-red-500' : 'border-gray-300'
+                  } w-full`}
+                />
+                {errors.message && renderErrorMessage(errors.message.message)}
+              </div>
+              <div className="w-full text-center ">
+                <button
+                  type="submit"
+                  className="bg-blue-800 rounded-lg px-4 py-1 text-white tracking-wider hover:bg-blue-900"
+                >
+                  submit
+                </button>
+              </div>
+              {formStatus && <p className="mt-4">{formStatus}</p>}
+            </form>
           </div>
           <div className="flex flex-wrap content-center justify-center w-full">
             <div className="text-white">
               <div>
                 <p className="py-4 text-xl">Phone:</p>
-                <p>+55 (21) 96538 - 1212</p>
+                <p>+61 481 394 451</p>
               </div>
               <div>
                 <p className="py-4 text-xl">Email:</p>
-                <p>thiagohenriques1699@gmail.com</p>
+                <p>tsg.lab00@gmail.com</p>
               </div>
               <div className="flex justify-around pt-8">
                 {links?.map((data: LinksData, index: number) => {
