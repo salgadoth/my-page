@@ -35,12 +35,18 @@ async function handler(req: NextRequest) {
     })
 
     if (!response.ok)
-      return NextResponse.json({ error: 'Failed to submit form.' })
+      return NextResponse.json(
+        { error: 'Failed to submit form.' },
+        { status: response.status },
+      )
 
     return NextResponse.json({ message: 'Form submitted successfully' })
   } catch (error) {
     console.error('Error submitting form: ', error)
-    return NextResponse.json({ error: 'Internal Server Error' })
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 },
+    )
   }
 }
 
