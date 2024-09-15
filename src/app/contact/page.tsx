@@ -3,6 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from 'react-google-recaptcha-v3'
 
 import * as z from 'zod'
 
@@ -11,6 +15,7 @@ import TopBar from '@/components/templates/TopBar'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
+
 import 'react-phone-input-2/lib/style.css'
 
 interface LinksData {
@@ -25,10 +30,11 @@ const schema = z.object({
   message: z.string().min(1, 'Your message for me is required'),
 })
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof schema> & { recaptchaToken: string }
 
 export default function Contact() {
   const [formStatus, setFormStatus] = useState<string | null>(null)
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const {
     register,
@@ -52,7 +58,17 @@ export default function Contact() {
   ]
 
   const onSubmit = async (data: FormData) => {
+    console.log('Submitting form...')
     try {
+      if (!executeRecaptcha) {
+        console.error('Recaptcha not yet available.')
+        return
+      }
+
+      const recaptchaToken = await executeRecaptcha('contact_form_submit')
+
+      data.recaptchaToken = recaptchaToken
+
       const response = await fetch('/api/new-message', {
         method: 'POST',
         headers: {
@@ -78,7 +94,9 @@ export default function Contact() {
   }
 
   return (
-    <>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+    >
       <TopBar />
       <Pagina
         header="Contact Me"
@@ -181,6 +199,6 @@ export default function Contact() {
           </div>
         </div>
       </Pagina>
-    </>
+    </GoogleReCaptchaProvider>
   )
 }

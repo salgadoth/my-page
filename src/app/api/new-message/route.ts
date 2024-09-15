@@ -1,3 +1,4 @@
+import { verifyRecaptcha } from '@/util/RecaptchaUtils'
 import { HttpStatusCode } from 'axios'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -18,7 +19,15 @@ async function handler(req: NextRequest) {
       )
     }
 
-    const { name, email, phone, message } = await req.json()
+    const { name, email, phone, message, recaptchaToken } = await req.json()
+
+    const recaptchaResponse = await verifyRecaptcha(recaptchaToken)
+
+    if (!recaptchaResponse.success)
+      return NextResponse.json(
+        { error: 'Recaptcha validation failed.' },
+        { status: HttpStatusCode.TooManyRequests },
+      )
 
     const response = await fetch(process.env.API_URL + '/message', {
       method: 'POST',
