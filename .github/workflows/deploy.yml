@@ -25,9 +25,7 @@ jobs:
         env: 
           API_URL: ${{ secrets.API_URL }}
           NEXT_PUBLIC_VPS_URL: ${{ secrets.VPS_URL }}
-        run: |
-          echo $API_URL && echo $NEXT_PUBLIC_VPS_URL
-          npm run build
+        run: npm run build
       
       - name: Build and deploy to server
         run: |
