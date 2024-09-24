@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   if (req.method === 'GET') {
     const API_URL = process.env.API_URL
 
@@ -13,7 +13,3 @@ async function handler(req: NextRequest) {
     return NextResponse.json(await user.json())
   }
 }
-
-export const runtime = 'nodejs'
-
-export { handler as GET }
