@@ -37,7 +37,7 @@ const ContactForm: React.FC = () => {
 
       data.recaptchaToken = recaptchaToken
 
-      const response = await fetch('/api/new-message', {
+      const response = await fetch('/api/message/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

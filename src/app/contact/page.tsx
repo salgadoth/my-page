@@ -9,6 +9,7 @@ import ContactForm from '@/components/templates/ContactForm'
 import ContactDetails, {
   LinksData,
 } from '@/components/templates/ContactDetails'
+import { AuthProvider } from '@/providers/AuthProvider'
 
 const links: LinksData[] = [
   {
@@ -25,7 +26,7 @@ const links: LinksData[] = [
 
 export default function Contact() {
   return (
-    <>
+    <AuthProvider>
       <TopBar />
       <Pagina
         header="Contact Me"
@@ -39,6 +40,6 @@ export default function Contact() {
           <ContactDetails data={links} />
         </div>
       </Pagina>
-    </>
+    </AuthProvider>
   )
 }
