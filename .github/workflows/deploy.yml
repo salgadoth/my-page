@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '20.17.0'
       
       - name: Install dependencies
         run: npm install
@@ -30,9 +30,8 @@ jobs:
       - name: Build and deploy to server
         run: |
           echo $API_URL && echo $NEXT_PUBLIC_VPS_URL
-          rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/runner-my-page/_work/my-page/my-page/ /home/salgadoth/deployments/my-page
+          rsync -avz --exclude="node_modules" --exclude=".git" /etc/actions-runner/runner-my-page/_work/my-page/my-page/ /home/$USER/deployments/my-page
           cd /home/$USER/deployments/my-page
           npm install --production
           pm2 startOrReload ecosystem.config.js
           pm2 list 
-
