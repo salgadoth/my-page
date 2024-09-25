@@ -1,3 +1,5 @@
+'use client'
+
 import Apresentacao from '@/components/templates/Apresentacao'
 import Pagina from '@/components/templates/Pagina'
 import TopBar from '@/components/templates/TopBar'

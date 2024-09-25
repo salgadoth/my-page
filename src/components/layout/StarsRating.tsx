@@ -55,20 +55,12 @@ export const Rating = (props: RatingProps) => {
   const totalFullStars = Math.floor(props.total)
   const totalEmptyStars = 5 - props.total
   const hasHalfStars = props.total % 1 >= 0.25 && props.total % 1 < 0.75
-  console.log(
-    'totalFull: ' +
-      totalFullStars +
-      ' | totalEmpty: ' +
-      totalEmptyStars +
-      '| hasHalf: ' +
-      hasHalfStars,
-  )
+
   const stars = []
   for (let i = 0; i < totalFullStars; i++)
     stars.push(<StarIcon key={i} filled />)
   if (hasHalfStars) stars.push(<HalfStarIcon />)
   for (let i = 0; i < Math.floor(totalEmptyStars); i++)
     stars.push(<StarIcon key={i + 10} />)
-  console.log(stars)
   return <div className="flex flex-row justify-center">{stars}</div>
 }

@@ -10,7 +10,7 @@ interface MyImageProps {
 export default function ProfilePhoto(props: MyImageProps) {
   return (
     <Image
-      className="rounded-full"
+      className="rounded-full mr-6"
       src={props.src}
       width={props.width}
       height={props.height}

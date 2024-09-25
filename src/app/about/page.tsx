@@ -11,10 +11,11 @@ export default function AboutPage() {
           <div>
             <ProfilePhoto
               src={
-                'https://media.licdn.com/dms/image/C4D03AQEC_GAlGOfkuw/profile-displayphoto-shrink_200_200/0/1606152633705?e=1689206400&v=beta&t=B0GovlJPoX-6gUorUS92tMolgw8_Dh-mE7RF6QgT6y0'
+                process.env.NEXT_PUBLIC_VPS_URL +
+                '/my-page/imgs/about/profile-pic.jpg'
               }
-              width={200}
-              height={200}
+              width={230}
+              height={230}
             />
           </div>
           <div className="text-black font-kanit w-3/4 h-1/2 text-lg">

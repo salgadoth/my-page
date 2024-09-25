@@ -19,13 +19,7 @@ export default function TopBar(props: any) {
           <MenuItem text="About" url="/about" />
           <MenuItem text="Experience" url="/experiences" />
           <MenuItem text="Projects" url="/projects" />
-          <MenuItem text="Contact" url="/contacts" />
-          <MenuItem
-            text="Export"
-            url="/export"
-            shouldntBeList
-            target="_blank"
-          />
+          <MenuItem text="Contact" url="/contact" />
         </Menu>
       </div>
     </div>

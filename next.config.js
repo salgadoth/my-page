@@ -21,6 +21,12 @@ const nextConfig = {
         port: '',
         pathname: '/fenavist.org.br/**',
       },
+      {
+        protocol: 'http',
+        hostname: '192.168.1.240',
+        port: '88',
+        pathname: '/**',
+      },
     ],
   },
 
