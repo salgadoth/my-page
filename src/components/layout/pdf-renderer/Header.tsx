@@ -76,9 +76,14 @@ export default function Header(props: HeaderProps) {
       <View style={styles.photoContainer}>
         <Image
           style={styles.photo}
-          src={
-            'https://media.licdn.com/dms/image/D4D03AQHTZTulCYDt-Q/profile-displayphoto-shrink_200_200/0/1687982548105?e=1718236800&v=beta&t=RgHkDMHAC2fp0XhCwC9Z5ASUL3S3fzUke4XXJgpevHE'
-          }
+          src={{
+            uri:
+              process.env.NEXT_PUBLIC_VPS_URL +
+              '/my-page/imgs/about/profile-pic.jpg',
+            headers: { 'Cache-Control': 'no-cache' },
+            method: 'GET',
+            body: '',
+          }}
         />
       </View>
       <View style={styles.detailColumn}>

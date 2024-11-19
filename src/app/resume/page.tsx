@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Document, Font, Page, StyleSheet } from '@react-pdf/renderer'
+import { Document, Page, StyleSheet } from '@react-pdf/renderer'
 import Header from '@/components/layout/pdf-renderer/Header'
 import Content from '@/components/layout/pdf-renderer/Content'
 import { useEffect, useState } from 'react'
@@ -30,8 +30,8 @@ export default function ExportDocument(props: any) {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch('api/user')
-      const json: UserModel = await response.json()
+      const responseUserData = await fetch('api/user')
+      const json: UserModel = await responseUserData.json()
       console.log(json)
       setUserData(json)
     }
