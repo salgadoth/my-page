@@ -23,33 +23,24 @@ export default function ExperiencePage(props: any) {
     getData()
   }, [])
 
-  if (loading) {
-    ;<>
+  return (
+    <>
       <TopBar />
       <Pagina
         header="My experiences"
         classNameParent="!bg-indigo"
         classNameHeader="!text-white"
       >
-        <Spin childClassName="!text-black">
-          <p>Loading...</p>
-        </Spin>
-      </Pagina>
-    </>
-  } else {
-    return (
-      <>
-        <TopBar />
-        <Pagina
-          header="My experiences"
-          classNameParent="!bg-indigo"
-          classNameHeader="!text-white"
-        >
+        {loading === true ? (
+          <Spin childClassName="text-white">
+            <p>Loading...</p>
+          </Spin>
+        ) : (
           <CardContainer>
             <Cards data={responseData} />
           </CardContainer>
-        </Pagina>
-      </>
-    )
-  }
+        )}
+      </Pagina>
+    </>
+  )
 }
