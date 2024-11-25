@@ -43,11 +43,13 @@ async function handler(req: NextRequest) {
       }),
     })
 
-    if (!response.ok)
+    if (!response.ok) {
+      const body = await response.json()
       return NextResponse.json(
-        { error: 'Failed to submit form.' },
-        { status: response.status },
+        { error: body.message },
+        { status: body.statusCode },
       )
+    }
 
     return NextResponse.json({ message: 'Form submitted successfully' })
   } catch (error) {
