@@ -13,8 +13,13 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema> & { recaptchaToken: string }
 
+interface FormStatus {
+  status: number
+  message: string
+}
+
 const ContactForm: React.FC = () => {
-  const [formStatus, setFormStatus] = useState<string | null>(null)
+  const [formStatus, setFormStatus] = useState<FormStatus | null>(null)
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const {
@@ -46,14 +51,17 @@ const ContactForm: React.FC = () => {
       })
 
       if (response.ok) {
-        setFormStatus('Form submitted successfully')
+        setFormStatus({
+          status: response.status,
+          message: 'Form submitted successfully',
+        })
       } else {
         const errorData = await response.json()
-        setFormStatus('Error: ' + errorData)
+        setFormStatus({ status: errorData.status, message: errorData.error })
       }
     } catch (error) {
       console.error('Failed to submit form: ', error)
-      setFormStatus('Failed to submit form')
+      setFormStatus({ status: 500, message: 'Failed to submit form' })
     }
   }
 
@@ -112,6 +120,16 @@ const ContactForm: React.FC = () => {
           />
           {errors.message && renderErrorMessage(errors.message.message)}
         </div>
+        <div className="mb-4 text-center">
+          {formStatus &&
+            (formStatus.status !== 200 ? (
+              <p className="mt-4 text-red-500 font-bold">
+                {formStatus.message}
+              </p>
+            ) : (
+              <p className="mt-4 font-bold">{formStatus.message}</p>
+            ))}
+        </div>
         <div className="w-full text-center ">
           <button
             type="submit"
@@ -120,7 +138,6 @@ const ContactForm: React.FC = () => {
             submit
           </button>
         </div>
-        {formStatus && <p className="mt-4">{formStatus}</p>}
       </form>
     </div>
   )
