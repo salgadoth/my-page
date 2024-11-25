@@ -32,7 +32,7 @@ export default function ExperiencePage(props: any) {
         classNameHeader="!text-white"
       >
         {loading === true ? (
-          <Spin childClassName="!text-black">
+          <Spin childClassName="text-white">
             <p>Loading...</p>
           </Spin>
         ) : (
