@@ -4,6 +4,7 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useForm } from 'react-hook-form'
 import PhoneInput from 'react-phone-input-2'
 import { z } from 'zod'
+import Spin from '../layout/Spin'
 
 const schema = z.object({
   name: z.string().min(1, 'Your name is required'),
@@ -20,6 +21,7 @@ interface FormStatus {
 
 const ContactForm: React.FC = () => {
   const [formStatus, setFormStatus] = useState<FormStatus | null>(null)
+  const [submitted, setSubmitted] = useState<boolean>(false)
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const {
@@ -32,6 +34,8 @@ const ContactForm: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     console.log('Submitting form...')
+    setFormStatus(null)
+    setSubmitted(!submitted)
     try {
       if (!executeRecaptcha) {
         console.error('Recaptcha not yet available.')
@@ -55,13 +59,16 @@ const ContactForm: React.FC = () => {
           status: response.status,
           message: 'Form submitted successfully',
         })
+        setSubmitted(false)
       } else {
         const errorData = await response.json()
         setFormStatus({ status: errorData.status, message: errorData.error })
+        setSubmitted(false)
       }
     } catch (error) {
       console.error('Failed to submit form: ', error)
       setFormStatus({ status: 500, message: 'Failed to submit form' })
+      setSubmitted(false)
     }
   }
 
@@ -80,7 +87,11 @@ const ContactForm: React.FC = () => {
             Your name:
           </label>
           <input
-            className="border-black border-[0.5px] border-opacity-25"
+            className={`border ${
+              errors.name
+                ? 'border-red-500'
+                : 'border-black border-[0.5px] border-opacity-25'
+            }`}
             id="name"
             type="text"
             placeholder="Jhon Doe"
@@ -95,7 +106,9 @@ const ContactForm: React.FC = () => {
           </label>
           <input
             className={`border ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
+              errors.email
+                ? 'border-red-500'
+                : 'border-black border-[0.5px] border-opacity-25'
             }`}
             id="email"
             type="email"
@@ -115,7 +128,9 @@ const ContactForm: React.FC = () => {
           <textarea
             {...register('message')}
             className={`border ${
-              errors.message ? 'border-red-500' : 'border-gray-300'
+              errors.message
+                ? 'border-red-500'
+                : 'border-black border-[0.5px] border-opacity-25'
             } w-full`}
           />
           {errors.message && renderErrorMessage(errors.message.message)}
@@ -131,12 +146,18 @@ const ContactForm: React.FC = () => {
             ))}
         </div>
         <div className="w-full text-center ">
-          <button
-            type="submit"
-            className="bg-blue-800 rounded-lg px-4 py-1 text-white tracking-wider hover:bg-blue-900"
-          >
-            submit
-          </button>
+          {!submitted ? (
+            <button
+              type="submit"
+              className="bg-blue-800 rounded-lg px-4 py-1 text-white tracking-wider hover:bg-blue-900"
+            >
+              send
+            </button>
+          ) : (
+            // <button className="bg-blue-800 rounded-lg px-4 py-1 text-white tracking-wider hover:bg-blue-900">
+            <Spin bgCircleColor="black" />
+            // </button>
+          )}
         </div>
       </form>
     </div>
