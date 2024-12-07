@@ -154,9 +154,7 @@ const ContactForm: React.FC = () => {
               send
             </button>
           ) : (
-            // <button className="bg-blue-800 rounded-lg px-4 py-1 text-white tracking-wider hover:bg-blue-900">
             <Spin bgCircleColor="black" />
-            // </button>
           )}
         </div>
       </form>
