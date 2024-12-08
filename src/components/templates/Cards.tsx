@@ -4,6 +4,7 @@ import { ExperienceModel } from '@/data/models/ExperienceModel'
 import { useEffect, useState } from 'react'
 import Spin from '../layout/Spin'
 import { getFormattedMonth } from '@/util/StringUtils'
+import Modal from '../layout/Modal'
 
 interface CardsProp {
   data?: ExperienceModel[]
@@ -17,25 +18,45 @@ interface Card {
 export default function Cards(props: CardsProp) {
   const [loading, setLoading] = useState(true)
   const [cards, setCards] = useState<Card[]>([])
+  const [modalCard, setModalCard] = useState<Card | null>(null)
+
+  // const handleClick = (id: string) => {
+  //   const newArray = cards.map((item: Card) => {
+  //     if (id === item.id) {
+  //       return { ...item, currentState: !item.currentState }
+  //     } else {
+  //       return item
+  //     }
+  //   })
+
+  //   setCards(newArray)
+  // }
 
   const handleClick = (id: string) => {
-    const newArray = cards.map((item: Card) => {
-      if (id === item.id) {
-        return { ...item, currentState: !item.currentState }
-      } else {
-        return item
-      }
-    })
-
-    setCards(newArray)
+    const clickedCard = cards.find((card) => card.id === id)
+    if (clickedCard) setModalCard(clickedCard)
   }
+
+  const closeModal = () => setModalCard(null)
+
+  // useEffect(() => {
+  //   if (props.data !== undefined && cards.length === 0) {
+  //     for (let i = 0; i < props.data.length; i++) {
+  //       const card: Card = { id: props.data[i].id, currentState: false }
+  //       cards.push(card)
+  //     }
+  //   }
+
+  //   setLoading(false)
+  // }, [cards, props.data])
 
   useEffect(() => {
     if (props.data !== undefined && cards.length === 0) {
-      for (let i = 0; i < props.data.length; i++) {
-        const card: Card = { id: props.data[i].id, currentState: false }
-        cards.push(card)
-      }
+      const initialCards = props.data.map((item) => ({
+        id: item.id,
+        currentState: false,
+      }))
+      setCards(initialCards)
     }
 
     setLoading(false)
@@ -50,6 +71,8 @@ export default function Cards(props: CardsProp) {
   } else {
     return (
       <>
+        {/* Cards render */}
+
         {props.data?.map((exp: ExperienceModel, i) => {
           const startedAtDate = new Date(exp.started)
           const endedAtDate = new Date(exp.ended)
@@ -111,6 +134,20 @@ export default function Cards(props: CardsProp) {
             </div>
           )
         })}
+
+        {/* Modal render */}
+        <Modal isOpen={!!modalCard} onClose={closeModal}>
+          {modalCard && (
+            <div className="text-black">
+              <h2 className="text-xl font-bold mb-4">
+                {props.data?.find((item) => item.id === modalCard.id)?.title}
+              </h2>
+              <p>
+                {props.data?.find((item) => item.id === modalCard.id)?.desc}
+              </p>
+            </div>
+          )}
+        </Modal>
       </>
     )
   }
