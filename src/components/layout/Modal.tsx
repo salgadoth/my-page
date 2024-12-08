@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           ✖
         </button>
         <div
-          className={`p-4 transition-all duration-300 ${childAnimationClass}`}
+          className={`p-4 transition-all duration-300 text-black font-kanit ${childAnimationClass}`}
         >
           {children}
         </div>
