@@ -4,6 +4,8 @@ import { ExperienceModel } from '@/data/models/ExperienceModel'
 import { useEffect, useState } from 'react'
 import Spin from '../layout/Spin'
 import { getFormattedMonth } from '@/util/StringUtils'
+import Modal from '../layout/Modal'
+import { calculateMonthsBetween } from '@/util/DateUtils'
 
 interface CardsProp {
   data?: ExperienceModel[]
@@ -16,18 +18,18 @@ interface Card {
 
 export default function Cards(props: CardsProp) {
   const [loading, setLoading] = useState(true)
-  const [cards, setCards] = useState<Card[]>([])
+  const [cards] = useState<Card[]>([])
+  const [selectedCard, setSelectedCard] = useState<string | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleClick = (id: string) => {
-    const newArray = cards.map((item: Card) => {
-      if (id === item.id) {
-        return { ...item, currentState: !item.currentState }
-      } else {
-        return item
-      }
-    })
+    setSelectedCard(id)
+    setIsModalOpen(true)
+  }
 
-    setCards(newArray)
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedCard(null)
   }
 
   useEffect(() => {
@@ -50,67 +52,120 @@ export default function Cards(props: CardsProp) {
   } else {
     return (
       <>
+        {/* Cards render */}
+
         {props.data?.map((exp: ExperienceModel, i) => {
           const startedAtDate = new Date(exp.started)
           const endedAtDate = new Date(exp.ended)
 
           const formattedStartedMonth = getFormattedMonth(exp.started)
           const formattedEndedMonth = getFormattedMonth(exp.ended)
-          return (
-            <div
-              key={exp.id}
-              className="group h-80 w-80 [perspective:1000px] hover:cursor-pointer"
-            >
+          if (selectedCard === exp.id) {
+            return (
               <div
-                className={`"relative h-full w-full rounded-xl transition-all duration-700 bg-white  [transform-style:preserve-3d] 
+                key={exp.id}
+                className="group h-80 w-80 [perspective:1000px] hover:cursor-pointer"
+              ></div>
+            )
+          } else
+            return (
+              <div
+                key={exp.id}
+                className="group h-80 w-80 [perspective:1000px] hover:cursor-pointer"
+              >
+                <div
+                  className={`"relative h-full w-full rounded-xl transition-all duration-700 bg-white  [transform-style:preserve-3d] 
                 ${
                   cards.at(i)?.currentState === true
                     ? '[transform:rotateY(180deg)]'
                     : ''
                 }`}
-                onClick={() => handleClick(exp.id)}
-              >
-                <div className="absolute inset-0 [backface-visibility:hidden]">
-                  <div className="z-10 w-full h-full text-black flex flex-col justify-center flex-wrap text-center p-4">
-                    {cards.at(i)?.id === exp.id &&
-                    cards.at(i)?.currentState !== true ? (
-                      <span className="font-kanitMed text-lg">
-                        <p className="capitalize pb-4">{exp.title}</p>
-                        <p className="pb-4">{exp.company}</p>
-                        <p>
-                          {formattedStartedMonth +
-                            '/' +
-                            startedAtDate.getFullYear()}{' '}
-                          -{' '}
-                          {exp.ended
-                            ? formattedEndedMonth +
+                  onClick={() => handleClick(exp.id)}
+                >
+                  <div className="absolute inset-0 [backface-visibility:hidden]">
+                    <div className="z-10 w-full h-full text-black flex flex-col justify-center flex-wrap text-center p-4">
+                      {cards.at(i)?.id === exp.id &&
+                      cards.at(i)?.currentState !== true ? (
+                        <span className="font-kanitMed text-lg">
+                          <p className="capitalize pb-4">{exp.title}</p>
+                          <p className="pb-4">{exp.company}</p>
+                          <p>
+                            {formattedStartedMonth +
                               '/' +
-                              endedAtDate.getFullYear()
-                            : 'till now'}
-                        </p>
-                        <p>{exp.country}</p>
-                      </span>
-                    ) : (
-                      <></>
-                    )}
+                              startedAtDate.getFullYear()}{' '}
+                            -{' '}
+                            {exp.ended
+                              ? formattedEndedMonth +
+                                '/' +
+                                endedAtDate.getFullYear()
+                              : 'till now'}
+                          </p>
+                          <p>{exp.country}</p>
+                        </span>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="absolute inset-0 h-full w-full text-black">
-                  <div className="z-0 w-full h-full text-black flex flex-col justify-center flex-wrap p-4">
-                    {cards.at(i)?.id === exp.id &&
-                    cards.at(i)?.currentState === true ? (
-                      <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg overflow-auto">
-                        <p className="animate-fadeIn">{exp.desc}</p>
-                      </span>
-                    ) : (
-                      <></>
-                    )}
+                  <div className="absolute inset-0 h-full w-full text-black">
+                    <div className="z-0 w-full h-full text-black flex flex-col justify-center flex-wrap p-4">
+                      {cards.at(i)?.id === exp.id &&
+                      cards.at(i)?.currentState === true ? (
+                        <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg overflow-auto">
+                          <p className="animate-fadeIn">{exp.desc}</p>
+                        </span>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )
+            )
         })}
+
+        {/* Modal render */}
+        {isModalOpen && (
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            {props.data
+              ?.filter((exp) => exp.id === selectedCard)
+              .map((exp) => {
+                const startedAtDate = new Date(exp.started)
+                const endedAtDate = new Date(exp.ended)
+
+                const diff = calculateMonthsBetween(
+                  startedAtDate.getMonth(),
+                  startedAtDate.getFullYear(),
+                  endedAtDate.getMonth(),
+                  endedAtDate.getFullYear(),
+                )
+
+                console.log(diff)
+
+                const years = Math.floor(diff)
+                const months = Math.round((diff % 1) * 100)
+
+                const yearPart =
+                  years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''
+                const monthPart =
+                  months > 0 ? `${months} month${months > 1 ? 's' : ''}` : ''
+
+                return (
+                  <div key={exp.id} className="p-4">
+                    <h2 className="text-2xl font-bold">{exp.title}</h2>
+                    <div className="flex items-center w-1/3 text-center">
+                      <p className="text-lg pr-5">{exp.company} </p>
+                      <p className="text-sm italic opacity-[0.55]">
+                        {[yearPart, monthPart].filter(Boolean).join(' and ') ||
+                          'currently employed'}
+                      </p>
+                    </div>
+                    <p className="mt-4">{exp.desc}</p>
+                  </div>
+                )
+              })}
+          </Modal>
+        )}
       </>
     )
   }
