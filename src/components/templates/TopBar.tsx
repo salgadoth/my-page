@@ -14,12 +14,13 @@ export default function TopBar(props: any) {
       <div className="pl-10">
         <LogoSvg width={85} height={85} url="/" />
       </div>
-      <div className="w-[28%]">
+      <div className="w-[35%]">
         <Menu>
           <MenuItem text="About" url="/about" />
           <MenuItem text="Experience" url="/experiences" />
           <MenuItem text="Projects" url="/projects" />
           <MenuItem text="Contact" url="/contact" />
+          <MenuItem text="Resume" url="/resume" shouldntBeList />
         </Menu>
       </div>
     </div>
