@@ -15,7 +15,7 @@ export interface UserModel {
   skill_set: string[]
   my_experiences: ExperienceModel[]
   my_projects: ProjectModel[]
-  my_laguages: LanguageModel[]
+  my_languages: LanguageModel[]
   my_contacts: ContactModel[]
   my_links: LinkModel[]
 }

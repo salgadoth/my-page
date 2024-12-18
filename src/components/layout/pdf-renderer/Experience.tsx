@@ -37,7 +37,7 @@ export default function Experience(props: ExperienceProps) {
             return (
               <View style={styles.expContainer} key={idx}>
                 <Text style={styles.margin1}>
-                  <Text style={{ fontWeight: 'bold', fontSize: '12px' }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
                     {exp.title}
                   </Text>
                   <Text>
@@ -45,7 +45,7 @@ export default function Experience(props: ExperienceProps) {
                     - {exp.company} - {exp.country}
                   </Text>
                 </Text>
-                <Text style={styles.margin1}>
+                <Text style={{ marginVertical: '1px', fontSize: '8px' }}>
                   {new Date(exp.started).toLocaleDateString('pt-BR')} -{' '}
                   {exp.ended
                     ? new Date(exp.ended).toLocaleDateString('pt-BR')

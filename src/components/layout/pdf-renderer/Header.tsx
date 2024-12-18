@@ -80,7 +80,7 @@ export default function Header(props: HeaderProps) {
             uri:
               process.env.NEXT_PUBLIC_VPS_URL +
               '/my-page/imgs/about/profile-pic.jpg',
-            headers: { 'Cache-Control': 'no-cache' },
+            headers: {},
             method: 'GET',
             body: '',
           }}
@@ -103,16 +103,18 @@ export default function Header(props: HeaderProps) {
             })}
           </View>
         </View>
-        {/* <View>
+        <View style={styles.skillsColumn}>
           <Text>Languages:</Text>
-          {props.data.my_laguages.map((lang, idx) => {
-            return (
-              <Text key={idx}>
-                {lang.language} - {lang.fluency_level}
-              </Text>
-            )
-          })}
-        </View> */}
+          <View style={styles.skillsList}>
+            {props.data.my_languages.map((lang, idx) => {
+              return (
+                <Text key={idx} style={styles.skillsItem}>
+                  {lang.language} - {lang.fluency_level}
+                </Text>
+              )
+            })}
+          </View>
+        </View>
         <View>
           <Text>My Links:</Text>
           <View style={styles.linksContainer}>
@@ -156,7 +158,6 @@ export default function Header(props: HeaderProps) {
                     <GmailSVG width="24px" height="24px" />
                   </Link>
                 )
-              // else if (contact.type === 'mobile')
               else
                 return (
                   <Link
@@ -167,7 +168,6 @@ export default function Header(props: HeaderProps) {
                     <PhoneSVG width="24px" height="24px" />
                   </Link>
                 )
-              // else src = contact.contact
             })}
           </View>
         </View>

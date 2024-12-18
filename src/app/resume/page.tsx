@@ -27,33 +27,36 @@ KanitFontRegisterer()
 
 export default function ExportDocument(props: any) {
   const [userData, setUserData] = useState<UserModel>()
+  const [isLoading, setIsLoading] = useState<Boolean>(true)
 
   useEffect(() => {
     async function getData() {
       const responseUserData = await fetch('api/user')
       const json: UserModel = await responseUserData.json()
       console.log(json)
+      setIsLoading(false)
       setUserData(json)
     }
     getData()
   }, [])
 
-  if (userData) {
-    return (
-      <div className="h-screen">
-        <PDFViewer className="w-full h-full">
-          <Document>
-            <Page size={'A4'} style={styles.mainContaiener}>
-              <Header data={userData} />
-              <Content
-                experienceData={userData.my_experiences}
-                projectsData={userData.my_projects}
-              />
-            </Page>
-          </Document>
-        </PDFViewer>
-      </div>
-    )
+  if (!isLoading) {
+    if (userData)
+      return (
+        <div className="h-screen">
+          <PDFViewer className="w-full h-full">
+            <Document>
+              <Page size={'A4'} style={styles.mainContaiener}>
+                <Header data={userData} />
+                <Content
+                  experienceData={userData.my_experiences}
+                  projectsData={userData.my_projects}
+                />
+              </Page>
+            </Document>
+          </PDFViewer>
+        </div>
+      )
   } else {
     return (
       <Spin childClassName="!text-black">
