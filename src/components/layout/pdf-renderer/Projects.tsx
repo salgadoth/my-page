@@ -47,14 +47,14 @@ export default function Projects(props: ProjectsProps) {
                     <Text
                       style={{
                         fontWeight: 'medium',
-                        fontSize: '12px',
+                        fontSize: '14px',
                         paddingRight: '2px',
                       }}
                     >
                       {project.name}
                     </Text>
                     <Text style={{ paddingRight: '2px' }}>-</Text>
-                    <Text style={{ fontSize: '8px', fontStyle: 'italic' }}>
+                    <Text style={{ fontSize: '9px', fontStyle: 'italic' }}>
                       {new Date(project.date).toLocaleDateString('pt-BR')}
                     </Text>
                   </View>

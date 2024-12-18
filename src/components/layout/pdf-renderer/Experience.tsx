@@ -49,7 +49,13 @@ export default function Experience(props: ExperienceProps) {
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ fontSize: '10px', paddingRight: '4px' }}>
+                  <Text
+                    style={{
+                      fontSize: '10px',
+                      fontWeight: 'medium',
+                      paddingRight: '4px',
+                    }}
+                  >
                     {exp.company} - {exp.country}
                   </Text>
                   <Text style={{ paddingRight: '4px' }}>|</Text>

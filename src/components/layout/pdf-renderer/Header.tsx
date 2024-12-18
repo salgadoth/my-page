@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'teal',
     width: '30%',
     fontFamily: 'Kanit',
-    // fontWeight: 'bold',
   },
   photoContainer: {
     display: 'flex',
@@ -40,8 +39,8 @@ const styles = StyleSheet.create({
   skillsList: {
     paddingLeft: '10px',
   },
-  skillsTitle: {
-    fontWeight: 'bold',
+  title: {
+    fontWeight: 'medium',
   },
   skillsItem: {
     paddingVertical: '2px',
@@ -64,13 +63,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: '8px',
-    // width: '90%',
   },
 })
 
 export default function Header(props: HeaderProps) {
-  // props.data.my_links.map()
-
   return (
     <View style={styles.container}>
       <View style={styles.photoContainer}>
@@ -92,7 +88,7 @@ export default function Header(props: HeaderProps) {
         </Text>
         <Text style={styles.subtitles}>{props.data.title}</Text>
         <View style={styles.skillsColumn}>
-          <Text style={styles.skillsTitle}>Skills:</Text>
+          <Text style={styles.title}>Skills:</Text>
           <View style={styles.skillsList}>
             {props.data.skill_set.map((skill, idx) => {
               return (
@@ -104,7 +100,7 @@ export default function Header(props: HeaderProps) {
           </View>
         </View>
         <View style={styles.skillsColumn}>
-          <Text>Languages:</Text>
+          <Text style={styles.title}>Languages:</Text>
           <View style={styles.skillsList}>
             {props.data.my_languages.map((lang, idx) => {
               return (
@@ -115,8 +111,8 @@ export default function Header(props: HeaderProps) {
             })}
           </View>
         </View>
-        <View>
-          <Text>My Links:</Text>
+        <View style={styles.skillsColumn}>
+          <Text style={styles.title}>My Links:</Text>
           <View style={styles.linksContainer}>
             {props.data.my_links.map((link, idx) => {
               switch (link.src.toLocaleLowerCase()) {
@@ -144,8 +140,8 @@ export default function Header(props: HeaderProps) {
             })}
           </View>
         </View>
-        <View>
-          <Text>Contact me: </Text>
+        <View style={styles.skillsColumn}>
+          <Text style={styles.title}>Contact me: </Text>
           <View style={styles.linksContainer}>
             {props.data.my_contacts.map((contact, idx) => {
               if (contact.type === 'e-mail')

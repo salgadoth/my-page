@@ -39,13 +39,11 @@ export default function Education(props: EducationProps) {
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ fontSize: '12px', fontWeight: 'medium' }}>
+                  <Text style={{ fontSize: '14px', fontWeight: 'medium' }}>
                     {edu.subject}
                   </Text>
-                  <Text style={{ paddingHorizontal: '1px' }}>-</Text>
-                  <Text style={{ fontSize: '12px', fontWeight: 'medium' }}>
-                    {edu.type}
-                  </Text>
+                  <Text style={{ paddingHorizontal: '2px' }}>-</Text>
+                  <Text style={{ fontSize: '12px' }}>{edu.type}</Text>
                 </View>
                 <View>
                   <Text
@@ -65,10 +63,10 @@ export default function Education(props: EducationProps) {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    alignItems: 'center',
+                    alignItems: 'baseline',
                   }}
                 >
-                  <Text style={{ fontSize: '10px' }}>{edu.institution}</Text>
+                  <Text style={{ fontSize: '12px' }}>{edu.institution}</Text>
                   <Text style={{ paddingHorizontal: '2px' }}>-</Text>
                   <Text style={{ fontSize: '10px' }}>{edu.country}</Text>
                 </View>
