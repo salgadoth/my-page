@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingLeft: '5px',
     fontFamily: 'Kanit',
-    // fontWeight: 'bold',
   },
   expsContainer: {
     width: '70%',
@@ -31,11 +30,11 @@ export default function Projects(props: ProjectsProps) {
   return (
     <View>
       <View style={styles.contentContainer}>
-        <Text style={{ fontWeight: 'bold' }}>Projects</Text>
-        <View style={styles.expContainer}>
+        <Text style={{fontWeight: 'medium'}}>Projects</Text>
+        <View style={styles.expsContainer}>
           {props.data.map((project, idx) => {
             return (
-              <View style={styles.expsContainer} key={idx}>
+              <View style={styles.expContainer} key={idx}>
                 <View style={styles.margin1}>
                   <View
                     style={{
@@ -47,7 +46,7 @@ export default function Projects(props: ProjectsProps) {
                   >
                     <Text
                       style={{
-                        fontWeight: 'bold',
+                        fontWeight: 'medium',
                         fontSize: '12px',
                         paddingRight: '2px',
                       }}
@@ -55,7 +54,7 @@ export default function Projects(props: ProjectsProps) {
                       {project.name}
                     </Text>
                     <Text style={{ paddingRight: '2px' }}>-</Text>
-                    <Text style={{ fontSize: '8px' }}>
+                    <Text style={{ fontSize: '8px', fontStyle: 'italic' }}>
                       {new Date(project.date).toLocaleDateString('pt-BR')}
                     </Text>
                   </View>
@@ -73,7 +72,11 @@ export default function Projects(props: ProjectsProps) {
                     {project.tech.map((stack, idx) => {
                       return (
                         <Text
-                          style={{ fontSize: '8px', paddingRight: '12px' }}
+                          style={{
+                            fontSize: '8px',
+                            paddingRight: '12px',
+                            fontStyle: 'italic',
+                          }}
                           key={idx}
                         >
                           {stack}
