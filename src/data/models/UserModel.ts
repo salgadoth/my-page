@@ -1,4 +1,5 @@
 import { ContactModel } from './ContactModel'
+import { EducationModel } from './EducationModel'
 import { ExperienceModel } from './ExperienceModel'
 import { LanguageModel } from './LanguageModel'
 import { LinkModel } from './LinkModel'
@@ -18,4 +19,5 @@ export interface UserModel {
   my_languages: LanguageModel[]
   my_contacts: ContactModel[]
   my_links: LinkModel[]
+  my_education: EducationModel[]
 }

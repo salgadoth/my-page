@@ -51,6 +51,7 @@ export default function ExportDocument(props: any) {
                 <Content
                   experienceData={userData.my_experiences}
                   projectsData={userData.my_projects}
+                  educationData={userData.my_education}
                 />
               </Page>
             </Document>

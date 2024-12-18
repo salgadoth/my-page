@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
     paddingLeft: '5px',
     fontFamily: 'Kanit',
   },
-  expsContainer: {
+  itemsContainer: {
     width: '70%',
   },
-  expContainer: {
+  item: {
     fontSize: '10px',
     marginVertical: '5px',
     display: 'flex',
@@ -30,11 +30,11 @@ export default function Projects(props: ProjectsProps) {
   return (
     <View>
       <View style={styles.contentContainer}>
-        <Text style={{fontWeight: 'medium'}}>Projects</Text>
-        <View style={styles.expsContainer}>
+        <Text style={{ fontWeight: 'medium' }}>Projects</Text>
+        <View style={styles.itemsContainer}>
           {props.data.map((project, idx) => {
             return (
-              <View style={styles.expContainer} key={idx}>
+              <View style={styles.item} key={idx}>
                 <View style={styles.margin1}>
                   <View
                     style={{

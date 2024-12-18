@@ -31,7 +31,7 @@ export default function Experience(props: ExperienceProps) {
   return (
     <View>
       <View style={styles.contentContainer}>
-        <Text style={{fontWeight: 'medium'}}>Experiences</Text>
+        <Text style={{ fontWeight: 'medium' }}>Experiences</Text>
         <View style={styles.expsContainer}>
           {props.data.map((exp, idx) => {
             return (
@@ -41,16 +41,23 @@ export default function Experience(props: ExperienceProps) {
                     {exp.title}
                   </Text>
                 </View>
-                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center'}}>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                  }}
+                >
                   <Text style={{ fontSize: '10px', paddingRight: '4px' }}>
                     {exp.company} - {exp.country}
                   </Text>
-                  <Text style={{paddingRight: '4px'}}>|</Text>
+                  <Text style={{ paddingRight: '4px' }}>|</Text>
                   <Text
                     style={{
                       marginVertical: '1px',
                       fontSize: '8px',
-                      fontStyle: 'italic'
+                      fontStyle: 'italic',
                     }}
                   >
                     {new Date(exp.started).toLocaleDateString('pt-BR')} -{' '}
