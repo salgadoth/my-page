@@ -20,12 +20,7 @@ export default function TopBar(props: any) {
           <MenuItem text="Experience" url="/experiences" />
           <MenuItem text="Projects" url="/projects" />
           <MenuItem text="Contact" url="/contact" />
-          <MenuItem
-            text="Resume"
-            url="/resume"
-            renderAs="button"
-            target="_blank"
-          />
+          <MenuItem text="Resume" url="/resume" renderAs="button" />
         </Menu>
       </div>
     </div>
