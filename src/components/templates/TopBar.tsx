@@ -8,7 +8,7 @@ export default function TopBar(props: any) {
       className={`
         flex flex-wrap place-content-between
         bg-indigo
-        h-20 absolute w-full
+        h-20 sticky top-0 w-full
         `}
     >
       <div className="pl-10">
