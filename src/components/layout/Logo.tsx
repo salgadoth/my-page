@@ -17,7 +17,6 @@ export default function LogoSvg(props: LogoSvgProps) {
           height={props.height}
           viewBox="0 0 1080 1080"
         >
-          <desc>Created with Fabric.js 5.2.4</desc>
           <defs></defs>
           <rect
             x="0"

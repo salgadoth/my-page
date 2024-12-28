@@ -9,12 +9,11 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingLeft: '5px',
     fontFamily: 'Kanit',
-    // fontWeight: 'bold',
   },
-  expsContainer: {
+  itemsContainer: {
     width: '70%',
   },
-  expContainer: {
+  item: {
     fontSize: '10px',
     marginVertical: '5px',
     display: 'flex',
@@ -32,10 +31,10 @@ export default function Experience(props: ExperienceProps) {
     <View>
       <View style={styles.contentContainer}>
         <Text style={{ fontWeight: 'medium' }}>Experiences</Text>
-        <View style={styles.expsContainer}>
+        <View style={styles.itemsContainer}>
           {props.data.map((exp, idx) => {
             return (
-              <View style={styles.expContainer} key={idx}>
+              <View style={styles.item} key={idx}>
                 <View style={styles.margin1}>
                   <Text style={{ fontSize: '14px', fontWeight: 'medium' }}>
                     {exp.title}

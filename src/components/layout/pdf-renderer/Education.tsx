@@ -63,12 +63,12 @@ export default function Education(props: EducationProps) {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    alignItems: 'baseline',
+                    alignItems: 'center',
                   }}
                 >
                   <Text style={{ fontSize: '12px' }}>{edu.institution}</Text>
                   <Text style={{ paddingHorizontal: '2px' }}>-</Text>
-                  <Text style={{ fontSize: '10px' }}>{edu.country}</Text>
+                  <Text style={{ fontSize: '11px' }}>{edu.country}</Text>
                 </View>
               </View>
             )
