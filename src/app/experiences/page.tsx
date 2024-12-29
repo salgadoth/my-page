@@ -29,7 +29,7 @@ export default function ExperiencePage(props: any) {
       <Pagina
         header="My experiences"
         classNameParent="!bg-indigo"
-        classNameHeader="!text-white"
+        classNameHeader="!text-white pb-20"
       >
         {loading === true ? (
           <Spin childClassName="text-white">

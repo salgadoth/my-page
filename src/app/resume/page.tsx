@@ -45,7 +45,11 @@ export default function ExportDocument(props: any) {
   return (
     <>
       <TopBar />
-      <Pagina header="My Resume" classNameChild="h-[50em]">
+      <Pagina
+        header="My Resume"
+        classNameChild="h-[50em]"
+        classNameHeader="pb-5"
+      >
         <div className="h-full">
           {!isLoading && userData ? (
             <PDFViewer className="w-full h-full m-auto">
