@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 
 export default function ProjectsPage() {
   const [responseData, setResponseData] = useState<ProjectModel[]>()
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     async function getData() {
@@ -21,25 +21,19 @@ export default function ProjectsPage() {
     }
     getData()
   }, [])
-  if (loading) {
-    return (
-      <>
-        <TopBar />
-        <Pagina header="My Projects" classNameHeader="pb-20">
+
+  return (
+    <>
+      <TopBar />
+      <Pagina header="My Projects" classNameHeader="pb-20">
+        {!isLoading ? (
+          <Table data={responseData} />
+        ) : (
           <Spin childClassName="!text-black">
             <p>Loading...</p>
           </Spin>
-        </Pagina>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <TopBar />
-        <Pagina header="My Projects" classNameHeader="pb-20">
-          <Table data={responseData} />
-        </Pagina>
-      </>
-    )
-  }
+        )}
+      </Pagina>
+    </>
+  )
 }
