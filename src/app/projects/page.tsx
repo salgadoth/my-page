@@ -25,7 +25,7 @@ export default function ProjectsPage() {
     return (
       <>
         <TopBar />
-        <Pagina header="My Projects">
+        <Pagina header="My Projects" classNameHeader="pb-20">
           <Spin childClassName="!text-black">
             <p>Loading...</p>
           </Spin>
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
     return (
       <>
         <TopBar />
-        <Pagina header="My Projects">
+        <Pagina header="My Projects" classNameHeader="pb-20">
           <Table data={responseData} />
         </Pagina>
       </>

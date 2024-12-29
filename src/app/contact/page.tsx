@@ -31,7 +31,7 @@ export default function Contact() {
       <Pagina
         header="Contact Me"
         classNameParent="!bg-indigo"
-        classNameHeader="text-white"
+        classNameHeader="text-white pb-14"
       >
         <div className="flex flex-row">
           <RecaptchaProvider>

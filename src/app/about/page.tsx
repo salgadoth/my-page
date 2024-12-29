@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <>
       <TopBar></TopBar>
-      <Pagina header="About me">
+      <Pagina header="About me" classNameHeader="pb-20">
         <div className="flex flex-wrap flex-row pt-15 items-center place-content-evenly">
           <div>
             <ProfilePhoto

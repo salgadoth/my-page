@@ -23,7 +23,7 @@ export default function Pagina(props: PaginaProps) {
                     `}
       >
         <p
-          className={`text-6xl text-black font-kanit pb-20 ${
+          className={`text-6xl text-black font-kanit ${
             props.classNameHeader ?? ''
           }`}
         >

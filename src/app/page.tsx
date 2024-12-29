@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <TopBar />
-      <Pagina classNameParent="!bg-indigo">
+      <Pagina classNameParent="!bg-indigo" classNameHeader="pb-10">
         <Apresentacao />
       </Pagina>
     </>
