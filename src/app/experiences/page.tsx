@@ -1,6 +1,6 @@
 'use client'
 
-import Spin from '@/components/layout/Spin'
+import CardSkeleton from '@/components/skeleton/CardSkeleton'
 import CardContainer from '@/components/templates/CardContainer'
 import Cards from '@/components/templates/Cards'
 import Pagina from '@/components/templates/Pagina'
@@ -32,9 +32,9 @@ export default function ExperiencePage(props: any) {
         classNameHeader="!text-white pb-20"
       >
         {loading === true ? (
-          <Spin childClassName="text-white">
-            <p>Loading...</p>
-          </Spin>
+          <CardContainer>
+            <CardSkeleton cards={3} />
+          </CardContainer>
         ) : (
           <CardContainer>
             <Cards data={responseData} />
