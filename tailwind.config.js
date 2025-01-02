@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -46,5 +48,16 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.skeleton-text': {
+          height: '1.2rem',
+          width: '60%',
+          backgroundColor: '#bfbfbf',
+          borderRadius: '0.25rem',
+        },
+      })
+    }),
+  ],
 }

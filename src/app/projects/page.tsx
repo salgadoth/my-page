@@ -1,6 +1,6 @@
 'use client'
 
-import Spin from '@/components/layout/Spin'
+import TableSkeleton from '@/components/skeleton/TableSkeleton'
 import Pagina from '@/components/templates/Pagina'
 import Table from '@/components/templates/Table'
 import TopBar from '@/components/templates/TopBar'
@@ -26,12 +26,10 @@ export default function ProjectsPage() {
     <>
       <TopBar />
       <Pagina header="My Projects" classNameHeader="pb-20">
-        {!isLoading ? (
+        {!isLoading && responseData && responseData?.length > 0 ? (
           <Table data={responseData} />
         ) : (
-          <Spin childClassName="!text-black">
-            <p>Loading...</p>
-          </Spin>
+          <TableSkeleton rows={2} />
         )}
       </Pagina>
     </>

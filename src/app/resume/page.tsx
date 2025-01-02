@@ -6,10 +6,10 @@ import Header from '@/components/layout/pdf-renderer/HeaderSection'
 import Content from '@/components/layout/pdf-renderer/PdfContent'
 import { useEffect, useState } from 'react'
 import { UserModel } from '@/data/models/UserModel'
-import Spin from '@/components/layout/Spin'
 import KanitFontRegisterer from '../../util/FontsRegisterer/KanitRegister'
 import TopBar from '@/components/templates/TopBar'
 import Pagina from '@/components/templates/Pagina'
+import PdfViewerSkeleton from '@/components/skeleton/PdfViewerSkeleton'
 
 const PDFViewer = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
@@ -65,9 +65,7 @@ export default function ExportDocument(props: any) {
               </Document>
             </PDFViewer>
           ) : (
-            <Spin>
-              <p>Loading...</p>
-            </Spin>
+            <PdfViewerSkeleton />
           )}
         </div>
       </Pagina>

@@ -1,6 +1,5 @@
 import { ProjectModel } from '@/data/models/ProjectModel'
 import { useEffect, useState } from 'react'
-import Spin from '../layout/Spin'
 import { getFormattedMonth } from '@/util/StringUtils'
 import { Rating } from '../layout/StarsRating'
 import Image from 'next/image'
@@ -14,7 +13,7 @@ interface ProjectState {
   currentState: boolean
 }
 
-export default function Table(props: TableProps) {
+export default function Table({ data }: TableProps) {
   const [, setLoading] = useState(true)
   const [projectsState, setProjectsState] = useState<ProjectState[]>([])
   const VPS_URL = process.env.NEXT_PUBLIC_VPS_URL
@@ -32,28 +31,27 @@ export default function Table(props: TableProps) {
   }
 
   useEffect(() => {
-    if (props.data !== undefined && projectsState.length === 0) {
-      for (let i = 0; i < props.data.length; i++) {
-        const proj: ProjectState = { id: props.data[i].id, currentState: false }
-        projectsState.push(proj)
-      }
+    if (data) {
+      setProjectsState(
+        data.map((proj) => ({ id: proj.id, currentState: false })),
+      )
 
       setLoading(false)
     }
-  }, [props.data, projectsState])
+  }, [data])
 
   if (projectsState.length > 0) {
     return (
       <div className="border rounded-lg bg-zinc-100 p-1">
         <table className="w-full border-separate border-spacing-0">
           <tbody className="text-black text-center p-4">
-            {props.data?.map((proj: ProjectModel, i) => {
+            {data?.map((proj: ProjectModel, i) => {
               const date = new Date(proj.date)
               const month = getFormattedMonth(proj.date, true)
               return (
                 <>
                   <tr
-                    key={proj.id}
+                    key={`${proj.id}-main`}
                     className="h-12 hover:bg-zinc-300 hover:cursor-pointer rounded-t-lg"
                     onClick={() => handleClick(proj.id)}
                   >
@@ -68,6 +66,7 @@ export default function Table(props: TableProps) {
                     </td>
                   </tr>
                   <tr
+                    key={`${proj.id}-details`}
                     className={`${
                       projectsState[i].currentState === true ? '' : 'hidden'
                     }`}
@@ -95,10 +94,7 @@ export default function Table(props: TableProps) {
       </div>
     )
   } else {
-    return (
-      <Spin>
-        <p>Loading...</p>
-      </Spin>
-    )
+    // Component renders nothing while waiting for the projectState finish mounting.
+    return null
   }
 }
