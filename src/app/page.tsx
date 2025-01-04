@@ -5,6 +5,7 @@ import Pagina from '@/components/templates/Pagina'
 import TopBar from '@/components/templates/TopBar'
 
 export default function Home() {
+  // TODO: RETRIEVE CURRENT POSITION FROM API AND DISPLAY IT AS: "Currently I'm focused in building solutions for {current_position}."
   return (
     <>
       <TopBar />
