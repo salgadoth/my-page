@@ -12,6 +12,7 @@ export interface UserModel {
   created_at: string
   updated_at: string
   title: string
+  curr_company: ExperienceModel
 
   skill_set: string[]
   my_experiences: ExperienceModel[]
