@@ -1,17 +1,9 @@
 version: 0.0
+os: linux
 
 files: 
   - source: /
     destination: /var/www/my-page
-
-permissions:
-  - object: /var/www/my-page
-    owner: admin
-    group: admin
-    mode: 755
-    type:
-      - directory
-      - file
 
 hooks:
   BeforeInstall:
