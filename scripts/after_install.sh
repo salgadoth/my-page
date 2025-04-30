@@ -3,4 +3,4 @@ cd /var/www/my-page
 echo "Installing dependencies..."
 sudo npm install --production
 echo "Building my-page app..."
-npm run build
+sudo npm run build
