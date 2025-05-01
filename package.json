@@ -9,11 +9,10 @@
     "lint": "eslint src --ext .tsx --fix"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^4.16.1",
-    "@react-pdf/renderer": "3.4.4",
     "@react-pdf/layout": "3.12.1",
-    "@types/node": "20.2.3",
-    "@types/react": "18.2.6",
+    "@react-pdf/renderer": "3.4.4",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.4.0",
@@ -33,7 +32,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^4.16.1",
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/bcrypt": "^5.0.0",
