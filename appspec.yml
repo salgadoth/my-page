@@ -11,7 +11,7 @@ hooks:
       timeout: 300
       runas: admin
 
-    - location: scripts/retrieve_env.sh
+    - location: scripts/retrieve_envs.sh
       timeout: 300
       runas: admin
 
