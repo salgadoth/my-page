@@ -1,5 +1,12 @@
-> "../.env" # Clear the output file
+# Create and set permissions for the .env file
+sudo touch "../.env" # Create the .env file if it doesn't exist
+sudo chmod 600 "../.env" # Set permissions to read/write for the owner only
 
+# Change ownership to the current user
+sudo chown $USER:$USER "../.env" # Change ownership to the current user
+
+# Retrieve secrets from AWS SSM Parameter Store
+# and write them to the .env file
 aws ssm get-parameters-by-path \
   --path "/mypage/env" \
   --with-decryption \
@@ -12,6 +19,3 @@ aws ssm get-parameters-by-path \
     # Extract the value into output file
     echo "$key=\"$value\"" >> "../.env"
   done
-
-sudo chmod 600 "../.env" # Set permissions to read/write for the owner only
-sudo chown $USER:$USER "../.env" # Change ownership to the current user
