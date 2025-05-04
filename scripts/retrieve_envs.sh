@@ -1,8 +1,6 @@
 # Create and set permissions for the .env file
 sudo touch "../.env" # Create the .env file if it doesn't exist
 sudo chmod 600 "../.env" # Set permissions to read/write for the owner only
-
-# Change ownership to the current user
 sudo chown $USER:$USER "../.env" # Change ownership to the current user
 
 # Retrieve secrets from AWS SSM Parameter Store
