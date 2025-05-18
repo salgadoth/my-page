@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '480px',
+        xxs: '320px',
+      },
       fontFamily: {
         kanit: ['Kanit', 'sans-serif'],
         kanitMed: ['Kanit-Medium', 'sans-serif'],

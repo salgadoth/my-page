@@ -5,15 +5,17 @@ export interface MenuItemProps {
   url: string
   renderAs?: 'listItem' | 'button' // Control rendering type
   target?: string
+  number?: number
 }
 
 export default function MenuItem(props: MenuItemProps) {
-  const { renderAs = 'listItem' } = props
+  const { renderAs = 'listItem', number } = props
   return (
-    <Link href={props.url} className="pr-14" target={props.target}>
+    <Link href={props.url} className="" target={props.target}>
       {renderAs === 'listItem' ? (
-        <li
-          className="after:content-['']
+        <p
+          className="
+                 'after:content-['']
                  after:block
                  after:border-b-2
                  after:border-b-seaGreen
@@ -24,8 +26,11 @@ export default function MenuItem(props: MenuItemProps) {
                  hover:after:scale-x-100
                  font-sourceCode"
         >
+          <span className="text-seaGreen font-bold">
+            {String(number).padStart(2, '0')}.
+          </span>
           {props.text}
-        </li>
+        </p>
       ) : (
         <button
           className="bg-gray-200 
