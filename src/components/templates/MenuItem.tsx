@@ -6,16 +6,17 @@ export interface MenuItemProps {
   renderAs?: 'listItem' | 'button' // Control rendering type
   target?: string
   number?: number
+  linkStyling?: string
 }
 
 export default function MenuItem(props: MenuItemProps) {
   const { renderAs = 'listItem', number } = props
   return (
-    <Link href={props.url} className="" target={props.target}>
+    <Link href={props.url} className={`${props.linkStyling}`} target={props.target}>
       {renderAs === 'listItem' ? (
         <p
           className="
-                 'after:content-['']
+                 after:content-['']
                  after:block
                  after:border-b-2
                  after:border-b-seaGreen

@@ -7,8 +7,7 @@ interface MenuProps {
 
 export default function Menu(props: MenuProps) {
   return (
-    <div className="h-full w-full">
-      <div className="w-50% text-zinc-50 marker:text-seaGreen">
+      <div className="text-zinc-50 grid grid-cols-5 gap-4 items-center text-left md:text-center md:grid-cols-5 sm:text-center sm:grid-cols-4 sm:gap-0 xs:grid-cols-4">
         {React.Children.map(props.children, (child, index) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, { number: index + 1 })
@@ -16,6 +15,5 @@ export default function Menu(props: MenuProps) {
           return child
         })}
       </div>
-    </div>
   )
 }

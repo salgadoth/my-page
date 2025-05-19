@@ -18,17 +18,16 @@ export default function TopBar(props: any) {
       {/* Right-side Desktop Menu */}
       <div className="hidden md:block">
         <Menu>
-          <MenuItem text="About" url="/about" />
+          <MenuItem text="About" url="/about" linkStyling='pl-[40px]'/>
           <MenuItem text="Experience" url="/experiences" />
-          <MenuItem text="Projects" url="/projects" />
-          <MenuItem text="Contact" url="/contact" />
+          <MenuItem text="Projects" url="/projects" linkStyling='pl-[15px]'/>
+          <MenuItem text="Contact" url="/contact" linkStyling='pl-[10px]'/>
           <MenuItem text="Resume" url="/resume" renderAs="button" />
         </Menu>
       </div>
 
       {/* Mobile Only: Resume + Hamburger */}
       <div className="md:hidden flex items-center space-x-4">
-        <Menu>
           {/* Resume button on the left */}
           <MenuItem text="Resume" url="/resume" renderAs="button" />
 
@@ -40,14 +39,14 @@ export default function TopBar(props: any) {
           >
             <Bars3Icon className="h-8 w-8" />
           </button>
-        </Menu>
+
       </div>
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="absolute top-20 left-0 w-full bg-indigo shadow-md md:hidden z-40">
+        <div className="absolute top-20 w-full bg-indigo shadow-md md:hidden z-40 sm:w-[90%] xs:w-[90%]">
           <Menu>
-            <MenuItem text="About" url="/about" />
+            <MenuItem text="About" url="/about"/>
             <MenuItem text="Experience" url="/experiences" />
             <MenuItem text="Projects" url="/projects" />
             <MenuItem text="Contact" url="/contact" />
