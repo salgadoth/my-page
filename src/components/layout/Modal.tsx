@@ -38,7 +38,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
       {/* Modal Content */}
       <div
-        className={`w-[50%] h-[50%] fixed top-[30%] left-[25%] inset-0 flex items-center justify-center z-50 transform transition-transform rounded-2xl bg-white shadow-lg p-6 ${animationClass}`}
+        className={`fixed md:w-[50%] md:h-[50%] md:top-[30%] md:left-[25%] inset-0 flex items-center justify-center z-50 transform transition-transform rounded-2xl bg-white shadow-lg p-6 ${animationClass} xs:h-[65%] xs:w-[65%] xs:top-[15%] xs:left-[18%]`}
       >
         <button
           className="absolute top-2 right-4 text-gray-500 hover:text-gray-700"
@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           ✖
         </button>
         <div
-          className={`p-4 transition-all duration-300 text-black font-kanit ${childAnimationClass}`}
+          className={`p-4 transition-all duration-300 text-black font-kanit ${childAnimationClass} xs:h-[90%]`}
         >
           {children}
         </div>

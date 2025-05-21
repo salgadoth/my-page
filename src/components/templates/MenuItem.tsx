@@ -12,7 +12,11 @@ export interface MenuItemProps {
 export default function MenuItem(props: MenuItemProps) {
   const { renderAs = 'listItem', number } = props
   return (
-    <Link href={props.url} className={`${props.linkStyling}`} target={props.target}>
+    <Link
+      href={props.url}
+      className={`${props.linkStyling}`}
+      target={props.target}
+    >
       {renderAs === 'listItem' ? (
         <p
           className="
