@@ -1,6 +1,6 @@
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 
 export interface LinksData {
   name: string
@@ -13,7 +13,7 @@ interface ContactDetailsProps {
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({ data }) => {
   return (
-    <div className="flex flex-wrap content-center justify-center w-full">
+    <div className="flex flex-wrap w-full content-center md:justify-center sm:justify-around md:flex-col">
       <div className="text-white">
         <div>
           <p className="py-4 text-xl">Phone:</p>
@@ -23,21 +23,21 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ data }) => {
           <p className="py-4 text-xl">Email:</p>
           <p>tsg.lab00@gmail.com</p>
         </div>
-        <div className="flex justify-around pt-8">
-          {data?.map((data: LinksData, index: number) => {
-            return (
-              <Link key={index} href={data.url}>
-                <Image
-                  src={data.icon}
-                  alt={`${data.name} logo`}
-                  width={50}
-                  height={50}
-                  className="grayscale"
-                />
-              </Link>
-            )
-          })}
-        </div>
+      </div>
+      <div className="flex justify-around pt-8 md:flex-row sm:flex-col">
+        {data?.map((data: LinksData, index: number) => {
+          return (
+            <Link key={index} href={data.url}>
+              <Image
+                src={data.icon}
+                alt={`${data.name} logo`}
+                width={50}
+                height={50}
+                className="grayscale"
+              />
+            </Link>
+          )
+        })}
       </div>
     </div>
   )

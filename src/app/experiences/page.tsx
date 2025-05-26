@@ -28,8 +28,8 @@ export default function ExperiencePage(props: any) {
       <TopBar />
       <Pagina
         header="My experiences"
-        classNameParent="!bg-indigo"
-        classNameHeader="!text-white pb-20"
+        parentStyling="!bg-indigo"
+        headerStyling="!text-white pb-20"
       >
         {loading === true ? (
           <CardContainer>

@@ -77,7 +77,7 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <div className="pr-8 bg-white w-2/3 px-8 pt-8 pb-12 rounded-2x text-black rounded-lg">
+    <div className="pr-8 bg-white px-8 pt-8 pb-12 rounded-2x text-black rounded-lg md:w-2/3 xs:w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label

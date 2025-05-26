@@ -3,13 +3,13 @@
 import Pagina from '@/components/templates/Pagina'
 import TopBar from '@/components/templates/TopBar'
 
-import 'react-phone-input-2/lib/style.css'
-import RecaptchaProvider from '@/providers/RecaptchaProvider'
-import ContactForm from '@/components/templates/ContactForm'
 import ContactDetails, {
   LinksData,
 } from '@/components/templates/ContactDetails'
+import ContactForm from '@/components/templates/ContactForm'
 import { AuthProvider } from '@/providers/AuthProvider'
+import RecaptchaProvider from '@/providers/RecaptchaProvider'
+import 'react-phone-input-2/lib/style.css'
 
 const links: LinksData[] = [
   {
@@ -30,10 +30,10 @@ export default function Contact() {
       <TopBar />
       <Pagina
         header="Contact Me"
-        classNameParent="!bg-indigo"
-        classNameHeader="text-white pb-14"
+        parentStyling="!bg-indigo"
+        headerStyling="text-white pb-14"
       >
-        <div className="flex flex-row">
+        <div className="flex md:flex-row xs:flex-col">
           <RecaptchaProvider>
             <ContactForm />
           </RecaptchaProvider>

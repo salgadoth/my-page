@@ -1,8 +1,8 @@
 import { ProjectModel } from '@/data/models/ProjectModel'
-import { useEffect, useState } from 'react'
 import { getFormattedMonth } from '@/util/StringUtils'
-import { Rating } from '../layout/StarsRating'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { Rating } from '../layout/StarsRating'
 
 interface TableProps {
   data?: ProjectModel[]
@@ -52,7 +52,7 @@ export default function Table({ data }: TableProps) {
                 <>
                   <tr
                     key={`${proj.id}-main`}
-                    className="h-12 hover:bg-zinc-300 hover:cursor-pointer rounded-t-lg"
+                    className="hover:bg-zinc-300 hover:cursor-pointer rounded-t-lg md:h-12 xs:h-20"
                     onClick={() => handleClick(proj.id)}
                   >
                     <td className="rounded-tl-lg rounded-bl-lg">{proj.name}</td>
@@ -71,7 +71,7 @@ export default function Table({ data }: TableProps) {
                       projectsState[i].currentState === true ? '' : 'hidden'
                     }`}
                   >
-                    <td className="bg-gray-200 min-w-[260px] p-2 rounded-l-lg">
+                    <td className="bg-gray-200 xl:min-w-[260px] md:min-w-[180px] xs:min-w-0 p-2 rounded-l-lg">
                       <Rating total={proj.rating} />
                     </td>
                     <td className="bg-gray-200 rounded-r-lg p-2 text-left text-sm">
