@@ -1,4 +1,9 @@
+# This script is run before the installation of the package.
+# It is used to retrieve the environment variables from AWS Systems Manager Parameter Store.
+# and writes them to a .env file in the current directory.
+
 # Create and set permissions for the .env file
+cd /deployments/my-page
 sudo touch ".env" # Create the .env file if it doesn't exist
 sudo chmod 600 ".env" # Set permissions to read/write for the owner only
 sudo chown $USER:$USER ".env" # Change ownership to the current user
