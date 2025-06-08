@@ -1,23 +1,19 @@
+import React, { ReactElement } from 'react'
+import { MenuItemProps } from './MenuItem'
+
 interface MenuProps {
-  children: any
+  children: ReactElement<MenuItemProps>[]
 }
 
 export default function Menu(props: MenuProps) {
   return (
-    <div
-      className={`
-            flex items-center justify-center
-            h-full w-full
-        `}
-    >
-      <ol
-        className={`
-                flex w-50% list-[decimal-leading-zero]
-                text-zinc-50 marker:text-seaGreen items-center
-            `}
-      >
-        {props.children}
-      </ol>
+    <div className="text-zinc-50 grid grid-cols-5 gap-4 items-center text-left md:text-center md:grid-cols-5 sm:text-center sm:grid-cols-4 sm:gap-0 xs:grid-cols-4">
+      {React.Children.map(props.children, (child, index) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { number: index + 1 })
+        }
+        return child
+      })}
     </div>
   )
 }

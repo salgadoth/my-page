@@ -1,11 +1,11 @@
 'use client'
 
 import { ExperienceModel } from '@/data/models/ExperienceModel'
-import { useEffect, useState } from 'react'
-import Spin from '../layout/Spin'
-import { getFormattedMonth } from '@/util/StringUtils'
-import Modal from '../layout/Modal'
 import { calculateMonthsBetween } from '@/util/DateUtils'
+import { getFormattedMonth } from '@/util/StringUtils'
+import { useEffect, useState } from 'react'
+import Modal from '../layout/Modal'
+import Spin from '../layout/Spin'
 
 interface CardsProp {
   data?: ExperienceModel[]
@@ -71,7 +71,7 @@ export default function Cards(props: CardsProp) {
             return (
               <div
                 key={exp.id}
-                className="group h-80 w-80 [perspective:1000px] hover:cursor-pointer"
+                className="group h-80 w-80 m-1 [perspective:1000px] hover:cursor-pointer xs:my-3"
               >
                 <div
                   className={`"relative h-full w-full rounded-xl transition-all duration-700 bg-white  [transform-style:preserve-3d] 
@@ -82,7 +82,7 @@ export default function Cards(props: CardsProp) {
                 }`}
                   onClick={() => handleClick(exp.id)}
                 >
-                  <div className="absolute inset-0 [backface-visibility:hidden]">
+                  <div className="absolute inset-0">
                     <div className="z-10 w-full h-full text-black flex flex-col justify-center flex-wrap text-center p-4">
                       {cards.at(i)?.id === exp.id &&
                       cards.at(i)?.currentState !== true ? (
@@ -111,7 +111,7 @@ export default function Cards(props: CardsProp) {
                     <div className="z-0 w-full h-full text-black flex flex-col justify-center flex-wrap p-4">
                       {cards.at(i)?.id === exp.id &&
                       cards.at(i)?.currentState === true ? (
-                        <span className="[transform:scale(-1,1)] text-center font-kanitMed text-lg overflow-auto">
+                        <span className="text-center font-kanitMed text-lg">
                           <p className="animate-fadeIn">{exp.desc}</p>
                         </span>
                       ) : (
@@ -151,16 +151,18 @@ export default function Cards(props: CardsProp) {
                   months > 0 ? `${months} month${months > 1 ? 's' : ''}` : ''
 
                 return (
-                  <div key={exp.id} className="p-4">
+                  <div key={exp.id} className="p-4 h-full">
                     <h2 className="text-2xl font-bold">{exp.title}</h2>
-                    <div className="flex items-center w-1/3 text-center">
+                    <div className="flex items-center w-1/3 text-center sm:w-full">
                       <p className="text-lg pr-5">{exp.company} </p>
                       <p className="text-sm italic opacity-[0.55]">
                         {[yearPart, monthPart].filter(Boolean).join(' and ') ||
                           'currently employed'}
                       </p>
                     </div>
-                    <p className="mt-4">{exp.desc}</p>
+                    <div className="overflow-auto h-[90%]">
+                      <p className="mt-4">{exp.desc}</p>
+                    </div>
                   </div>
                 )
               })}

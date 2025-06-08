@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <TopBar />
-      <Pagina classNameParent="!bg-indigo" classNameHeader="pb-10">
+      <Pagina parentStyling="!bg-indigo" headerStyling="pb-10">
         {!loading && userData ? (
           <Apresentacao data={userData} />
         ) : (

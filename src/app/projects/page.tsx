@@ -25,7 +25,11 @@ export default function ProjectsPage() {
   return (
     <>
       <TopBar />
-      <Pagina header="My Projects" classNameHeader="pb-20">
+      <Pagina
+        header="My Projects"
+        headerStyling="pb-20"
+        childStyling="xs:w-[80%]"
+      >
         {!isLoading && responseData && responseData?.length > 0 ? (
           <Table data={responseData} />
         ) : (

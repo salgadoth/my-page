@@ -1,15 +1,15 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { Document, Page, StyleSheet } from '@react-pdf/renderer'
 import Header from '@/components/layout/pdf-renderer/HeaderSection'
 import Content from '@/components/layout/pdf-renderer/PdfContent'
-import { useEffect, useState } from 'react'
-import { UserModel } from '@/data/models/UserModel'
-import KanitFontRegisterer from '../../util/FontsRegisterer/KanitRegister'
-import TopBar from '@/components/templates/TopBar'
-import Pagina from '@/components/templates/Pagina'
 import PdfViewerSkeleton from '@/components/skeleton/PdfViewerSkeleton'
+import Pagina from '@/components/templates/Pagina'
+import TopBar from '@/components/templates/TopBar'
+import { UserModel } from '@/data/models/UserModel'
+import { Document, Page, StyleSheet } from '@react-pdf/renderer'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import KanitFontRegisterer from '../../util/FontsRegisterer/KanitRegister'
 
 const PDFViewer = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
@@ -45,11 +45,7 @@ export default function ExportDocument(props: any) {
   return (
     <>
       <TopBar />
-      <Pagina
-        header="My Resume"
-        classNameChild="h-[50em]"
-        classNameHeader="pb-5"
-      >
+      <Pagina header="My Resume" childStyling="h-[50em]" headerStyling="pb-5">
         <div className="h-full">
           {!isLoading && userData ? (
             <PDFViewer className="w-full h-full m-auto">
