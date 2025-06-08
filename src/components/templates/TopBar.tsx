@@ -1,5 +1,4 @@
 'use client'
-import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import LogoSvg from '../layout/Logo'
 import Menu from './Menu'
@@ -34,16 +33,27 @@ export default function TopBar(props: any) {
         {/* Hamburger icon */}
         <button
           onClick={toggleMenu}
-          className="text-white focus:outline-none"
+          className="text-white focus:outline-none h-full"
           aria-label="Toggle menu"
         >
-          <Bars3Icon className="h-8 w-8" />
+          <span
+            className={`block h-[2px] rounded-md w-6 bg-white transition-transform duration-300 ease-in-out
+              ${isOpen ? 'rotate-[45deg]  translate-y-[12px] mt-[-12px]' : ''}`}
+          />
+          <span
+            className={`block h-[2px] rounded-md w-6 bg-white my-[4px] transition-transform duration-300 ease-in-out
+              ${isOpen ? 'opacity-0' : ''}`}
+          />
+          <span
+            className={`block h-[2px] rounded-md w-6 bg-white transition-transform duration-300 ease-in-out
+              ${isOpen ? '-rotate-[45deg]' : ''}`}
+          />
         </button>
       </div>
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="absolute top-20 w-full bg-indigo shadow-md md:hidden z-40 xs:right-0">
+        <div className="flex align-middle absolute top-20 w-full h-14 bg-indigo shadow-md md:hidden z-40 xs:right-0">
           <Menu>
             <MenuItem
               text="About"

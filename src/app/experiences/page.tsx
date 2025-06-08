@@ -29,7 +29,7 @@ export default function ExperiencePage(props: any) {
       <Pagina
         header="My experiences"
         parentStyling="!bg-indigo"
-        headerStyling="!text-white pb-20"
+        headerStyling="!text-white pb-20 md:pl-0 xs:pl-10"
       >
         {loading === true ? (
           <CardContainer>

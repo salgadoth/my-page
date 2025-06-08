@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export interface MenuItemProps {
   text: string
@@ -11,6 +13,18 @@ export interface MenuItemProps {
 
 export default function MenuItem(props: MenuItemProps) {
   const { renderAs = 'listItem', number } = props
+  const [animateMobileUnderline, setAnimateMobileUnderline] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (window.innerWidth < 768) {
+        setAnimateMobileUnderline(true)
+      }
+    }, 100)
+
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
     <Link
       href={props.url}
@@ -19,17 +33,24 @@ export default function MenuItem(props: MenuItemProps) {
     >
       {renderAs === 'listItem' ? (
         <p
-          className="
+          className={`
                  after:content-['']
                  after:block
                  after:border-b-2
                  after:border-b-seaGreen
                  after:scale-x-0
                  after:transition 
-                 duration-700 
-                 ease-in-out 
+                 after:duration-700 
+                 after:ease-in-out 
                  hover:after:scale-x-100
-                 font-sourceCode"
+                 ${
+                   animateMobileUnderline
+                     ? 'after:scale-x-100'
+                     : 'after:scale-x-0'
+                 }
+                 md:after:scale-x-0
+                 md:hover:after:scale-x-100
+                 font-sourceCode`}
         >
           <span className="text-seaGreen font-bold">
             {String(number).padStart(2, '0')}.
